@@ -1,0 +1,77 @@
+DROP TABLE aka_name;
+DROP TABLE aka_title;
+DROP TABLE cast_info;
+DROP TABLE char_name;
+DROP TABLE comp_cast_type;
+DROP TABLE company_name;
+DROP TABLE company_type;
+DROP TABLE complete_cast;
+DROP TABLE info_type;
+DROP TABLE kind_type;
+DROP TABLE link_type;
+DROP TABLE movie_companies;
+DROP TABLE movie_info;
+DROP TABLE movie_link;
+DROP TABLE name;
+DROP TABLE person_info;
+DROP TABLE role_type;
+DELETE FROM movie_info_idx WHERE info_type_id != 100;
+
+CREATE TRIGGER title_trigger
+AFTER DELETE ON title
+FOR EACH ROW BEGIN
+  DELETE FROM movie_keyword WHERE movie_keyword.movie_id = OLD.id;
+END;
+
+CREATE INDEX title_idx_kind ON title (kind_id);
+DELETE FROM title WHERE kind_id != 1;
+
+CREATE TABLE temp_table AS SELECT id,keyword FROM keyword;
+DROP TABLE keyword;
+CREATE TABLE keyword (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    keyword VARCHAR(255)
+);
+INSERT INTO keyword SELECT * FROM temp_table;
+DROP TABLE temp_table;
+CREATE INDEX keyword_idx_keyword ON keyword (keyword);
+
+CREATE TABLE temp_table (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    year INT,
+    votes INT
+);
+INSERT INTO temp_table SELECT title.id,title.title,title.production_year,COALESCE(movie_info_idx.info,0) FROM title LEFT OUTER JOIN movie_info_idx ON title.id = movie_info_idx.movie_id;
+DROP TABLE title;
+CREATE TABLE title (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    year INT,
+    votes INT
+);
+INSERT INTO title SELECT * FROM temp_table;
+DROP TABLE temp_table;
+CREATE INDEX title_idx_votes ON title (votes);
+
+CREATE TRIGGER vote_trigger
+AFTER DELETE ON title
+FOR EACH ROW BEGIN
+  DELETE FROM movie_keyword WHERE movie_keyword.movie_id = OLD.id;
+END;
+DELETE FROM title WHERE votes < 20000;
+
+CREATE TABLE temp_table AS SELECT id,title,year FROM title;
+DROP TABLE title;
+CREATE TABLE title (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    year INT
+);
+INSERT INTO title SELECT * FROM temp_table;
+DROP TABLE temp_table;
+CREATE INDEX title_idx_title ON title (title);
+
+DROP TABLE movie_info_idx;
+
+VACUUM;
