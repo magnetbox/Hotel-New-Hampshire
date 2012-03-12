@@ -1,0 +1,302 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BBCA52FA150D9A27004D6439 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCA52F9150D9A27004D6439 /* libsqlite3.dylib */; };
+		BBCA52FC150D9DD9004D6439 /* imdb.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = BBCA52FB150D9DD9004D6439 /* imdb.sqlite */; };
+		BBDE5FC8150D937900910FA3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBDE5FC7150D937900910FA3 /* UIKit.framework */; };
+		BBDE5FCA150D937900910FA3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBDE5FC9150D937900910FA3 /* Foundation.framework */; };
+		BBDE5FCC150D937900910FA3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBDE5FCB150D937900910FA3 /* CoreGraphics.framework */; };
+		BBDE5FD2150D937900910FA3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BBDE5FD0150D937900910FA3 /* InfoPlist.strings */; };
+		BBDE5FD4150D937900910FA3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDE5FD3150D937900910FA3 /* main.m */; };
+		BBDE5FD8150D937900910FA3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDE5FD7150D937900910FA3 /* AppDelegate.m */; };
+		BBDE5FDB150D937900910FA3 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBDE5FD9150D937900910FA3 /* MainStoryboard.storyboard */; };
+		BBDE5FDE150D937900910FA3 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDE5FDD150D937900910FA3 /* MasterViewController.m */; };
+		BBDE5FE1150D937900910FA3 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDE5FE0150D937900910FA3 /* DetailViewController.m */; };
+		BBDE5FED150D93C800910FA3 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDE5FEC150D93C800910FA3 /* Movie.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BBCA52F9150D9A27004D6439 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		BBCA52FB150D9DD9004D6439 /* imdb.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = imdb.sqlite; path = ../imdb.sqlite; sourceTree = "<group>"; };
+		BBDE5FC3150D937900910FA3 /* Hotel New Hampshire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hotel New Hampshire.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBDE5FC7150D937900910FA3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		BBDE5FC9150D937900910FA3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BBDE5FCB150D937900910FA3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BBDE5FCF150D937900910FA3 /* Hotel New Hampshire-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Hotel New Hampshire-Info.plist"; sourceTree = "<group>"; };
+		BBDE5FD1150D937900910FA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BBDE5FD3150D937900910FA3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BBDE5FD5150D937900910FA3 /* Hotel New Hampshire-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hotel New Hampshire-Prefix.pch"; sourceTree = "<group>"; };
+		BBDE5FD6150D937900910FA3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BBDE5FD7150D937900910FA3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BBDE5FDA150D937900910FA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		BBDE5FDC150D937900910FA3 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		BBDE5FDD150D937900910FA3 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		BBDE5FDF150D937900910FA3 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		BBDE5FE0150D937900910FA3 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		BBDE5FEB150D93C800910FA3 /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Movie.h; path = ../Movie.h; sourceTree = "<group>"; };
+		BBDE5FEC150D93C800910FA3 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Movie.m; path = ../Movie.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BBDE5FC0150D937900910FA3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBCA52FA150D9A27004D6439 /* libsqlite3.dylib in Frameworks */,
+				BBDE5FC8150D937900910FA3 /* UIKit.framework in Frameworks */,
+				BBDE5FCA150D937900910FA3 /* Foundation.framework in Frameworks */,
+				BBDE5FCC150D937900910FA3 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BBDE5FB8150D937900910FA3 = {
+			isa = PBXGroup;
+			children = (
+				BBDE5FCD150D937900910FA3 /* Hotel New Hampshire */,
+				BBDE5FC6150D937900910FA3 /* Frameworks */,
+				BBDE5FC4150D937900910FA3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BBDE5FC4150D937900910FA3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BBDE5FC3150D937900910FA3 /* Hotel New Hampshire.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BBDE5FC6150D937900910FA3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BBDE5FC7150D937900910FA3 /* UIKit.framework */,
+				BBDE5FC9150D937900910FA3 /* Foundation.framework */,
+				BBDE5FCB150D937900910FA3 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BBDE5FCD150D937900910FA3 /* Hotel New Hampshire */ = {
+			isa = PBXGroup;
+			children = (
+				BBDE5FD6150D937900910FA3 /* AppDelegate.h */,
+				BBDE5FD7150D937900910FA3 /* AppDelegate.m */,
+				BBDE5FD9150D937900910FA3 /* MainStoryboard.storyboard */,
+				BBDE5FDC150D937900910FA3 /* MasterViewController.h */,
+				BBDE5FDD150D937900910FA3 /* MasterViewController.m */,
+				BBDE5FDF150D937900910FA3 /* DetailViewController.h */,
+				BBDE5FE0150D937900910FA3 /* DetailViewController.m */,
+				BBDE5FEB150D93C800910FA3 /* Movie.h */,
+				BBDE5FEC150D93C800910FA3 /* Movie.m */,
+				BBDE5FCE150D937900910FA3 /* Supporting Files */,
+			);
+			path = "Hotel New Hampshire";
+			sourceTree = "<group>";
+		};
+		BBDE5FCE150D937900910FA3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BBCA52F9150D9A27004D6439 /* libsqlite3.dylib */,
+				BBCA52FB150D9DD9004D6439 /* imdb.sqlite */,
+				BBDE5FCF150D937900910FA3 /* Hotel New Hampshire-Info.plist */,
+				BBDE5FD0150D937900910FA3 /* InfoPlist.strings */,
+				BBDE5FD3150D937900910FA3 /* main.m */,
+				BBDE5FD5150D937900910FA3 /* Hotel New Hampshire-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BBDE5FC2150D937900910FA3 /* Hotel New Hampshire */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BBDE5FE4150D937900910FA3 /* Build configuration list for PBXNativeTarget "Hotel New Hampshire" */;
+			buildPhases = (
+				BBDE5FBF150D937900910FA3 /* Sources */,
+				BBDE5FC0150D937900910FA3 /* Frameworks */,
+				BBDE5FC1150D937900910FA3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Hotel New Hampshire";
+			productName = "Hotel New Hampshire";
+			productReference = BBDE5FC3150D937900910FA3 /* Hotel New Hampshire.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BBDE5FBA150D937900910FA3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = BBDE5FBD150D937900910FA3 /* Build configuration list for PBXProject "Hotel New Hampshire" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BBDE5FB8150D937900910FA3;
+			productRefGroup = BBDE5FC4150D937900910FA3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BBDE5FC2150D937900910FA3 /* Hotel New Hampshire */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BBDE5FC1150D937900910FA3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBDE5FD2150D937900910FA3 /* InfoPlist.strings in Resources */,
+				BBDE5FDB150D937900910FA3 /* MainStoryboard.storyboard in Resources */,
+				BBCA52FC150D9DD9004D6439 /* imdb.sqlite in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BBDE5FBF150D937900910FA3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBDE5FD4150D937900910FA3 /* main.m in Sources */,
+				BBDE5FD8150D937900910FA3 /* AppDelegate.m in Sources */,
+				BBDE5FDE150D937900910FA3 /* MasterViewController.m in Sources */,
+				BBDE5FE1150D937900910FA3 /* DetailViewController.m in Sources */,
+				BBDE5FED150D93C800910FA3 /* Movie.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BBDE5FD0150D937900910FA3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BBDE5FD1150D937900910FA3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BBDE5FD9150D937900910FA3 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BBDE5FDA150D937900910FA3 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BBDE5FE2150D937900910FA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BBDE5FE3150D937900910FA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BBDE5FE5150D937900910FA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Hotel New Hampshire/Hotel New Hampshire-Prefix.pch";
+				INFOPLIST_FILE = "Hotel New Hampshire/Hotel New Hampshire-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		BBDE5FE6150D937900910FA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Hotel New Hampshire/Hotel New Hampshire-Prefix.pch";
+				INFOPLIST_FILE = "Hotel New Hampshire/Hotel New Hampshire-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BBDE5FBD150D937900910FA3 /* Build configuration list for PBXProject "Hotel New Hampshire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BBDE5FE2150D937900910FA3 /* Debug */,
+				BBDE5FE3150D937900910FA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BBDE5FE4150D937900910FA3 /* Build configuration list for PBXNativeTarget "Hotel New Hampshire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BBDE5FE5150D937900910FA3 /* Debug */,
+				BBDE5FE6150D937900910FA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BBDE5FBA150D937900910FA3 /* Project object */;
+}
