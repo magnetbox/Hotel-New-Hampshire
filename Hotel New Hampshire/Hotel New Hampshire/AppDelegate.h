@@ -9,13 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @class Movie;
+@class Keywords;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
     NSMutableArray *movieArray;
+    NSMutableArray *keywordArray;
 }
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, retain) NSMutableArray *movieArray;
+@property (nonatomic, retain) NSMutableArray *keywordArray;
 
 - (void) copyDatabaseIfNeeded;
 - (NSString *) getDBPath;

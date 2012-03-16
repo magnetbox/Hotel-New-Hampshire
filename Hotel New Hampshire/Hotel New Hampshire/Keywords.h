@@ -1,5 +1,5 @@
 //
-//  Movie.h
+//  Keywords.h
 //  Hotel New Hampshire
 //
 //  Created by Ben Tesch on 3/11/12.
@@ -9,21 +9,20 @@
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
 
-@interface Movie : NSObject {
-    NSInteger mID;
-    NSString *mTitle;
-    NSInteger mYear;
+@interface Keywords : NSObject {
+    NSInteger kID;
+    NSString *kTitle;
 }
 
-@property (nonatomic, assign) NSInteger mID;
-@property (nonatomic, retain) NSString *mTitle;
-@property (nonatomic, assign) NSInteger mYear;
+@property (nonatomic, readonly) NSInteger kID;
+@property (nonatomic, retain) NSString *kTitle;
 
 + (void) getInitialDataToDisplay:(NSString *)dbPath;
-+ (void) getMovieFromKeyword:(NSInteger)pk dbPath:(NSString *)dbPath;
++ (void) getKeywordsForMovie:(NSInteger)pk dbPath:(NSString *)dbPath;
 + (void) finalizeStatements;
 
 //Instance methods.
 - (id) initWithPrimaryKey:(NSInteger)pk;
+
 
 @end

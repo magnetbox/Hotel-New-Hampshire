@@ -8,20 +8,27 @@
 
 #import "AppDelegate.h"
 #import "Movie.h"
+#import "Keywords.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize movieArray;
+@synthesize movieArray, keywordArray;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self copyDatabaseIfNeeded];
     
-    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-    self.movieArray = tempArray;
+    NSMutableArray *tempMovieArray = [[NSMutableArray alloc] init];
+    self.movieArray = tempMovieArray;
+
+    NSMutableArray *tempKeywordArray = [[NSMutableArray alloc] init];
+    self.keywordArray = tempKeywordArray;
     
     [Movie getInitialDataToDisplay:[self getDBPath]];
+    Movie *mov = [movieArray objectAtIndex:0];
+    
+    [Keywords getKeywordsForMovie:mov.mID dbPath:[self getDBPath]];
     
     [_window makeKeyAndVisible];
 

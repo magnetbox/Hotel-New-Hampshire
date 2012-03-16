@@ -8,6 +8,7 @@
 
 #import "MasterViewController.h"
 #import "Movie.h"
+#import "Keywords.h"
 
 @implementation MasterViewController
 
@@ -30,7 +31,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.title = @"Movies";
+    Movie *mov = [appDelegate.movieArray objectAtIndex:0];
+    NSString* movieString = [NSString stringWithFormat:@"%@ (%d)", mov.mTitle, mov.mYear];
+    self.title = movieString;
 }
 
 - (void)viewDidUnload
@@ -67,7 +70,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [appDelegate.movieArray count];
+    NSLog(@"RECORDS: %d",[appDelegate.keywordArray count]);
+    return [appDelegate.keywordArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -81,10 +85,17 @@
         // TODO: Any other initialization that applies to all cells of this type.
     }
     
-    // Customize cell
+    /*
+    // Customize movie cell
     Movie *movieObj = [appDelegate.movieArray objectAtIndex:indexPath.row];
     NSString* movieString = [NSString stringWithFormat:@"%@ (%d)", movieObj.mTitle, movieObj.mYear];
     cell.textLabel.text = movieString;
+    */
+    
+    // Customize keyword cell
+    Keywords *kObj = [appDelegate.keywordArray objectAtIndex:indexPath.row];
+    NSString* keywordString = [NSString stringWithFormat:@"%@", kObj.kTitle];
+    cell.textLabel.text = [keywordString stringByReplacingOccurrencesOfString:@"-" withString:@" "];
     
     return cell;
 }
