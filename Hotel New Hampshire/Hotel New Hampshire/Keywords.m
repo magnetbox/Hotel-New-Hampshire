@@ -28,6 +28,8 @@ static sqlite3 *database = nil;
         
         if(sqlite3_prepare_v2(database, [sql UTF8String], -1, &selectstmt, NULL) == SQLITE_OK) {            
             
+            [appDelegate.keywordArray removeAllObjects];
+            
             while(sqlite3_step(selectstmt) == SQLITE_ROW) {
                 
                 NSInteger primaryKey = sqlite3_column_int(selectstmt, 0);
@@ -40,10 +42,6 @@ static sqlite3 *database = nil;
     } else {
         sqlite3_close(database);
     }
-}
-
-+ (void) getInitialDataToDisplay:(NSString *)dbPath {
-    
 }
 
 + (void) finalizeStatements {

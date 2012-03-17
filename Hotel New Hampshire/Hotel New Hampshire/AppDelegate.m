@@ -13,7 +13,7 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize movieArray, keywordArray;
+@synthesize movieArray, keywordArray, lastMovieID;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -21,15 +21,14 @@
     
     NSMutableArray *tempMovieArray = [[NSMutableArray alloc] init];
     self.movieArray = tempMovieArray;
-
     NSMutableArray *tempKeywordArray = [[NSMutableArray alloc] init];
     self.keywordArray = tempKeywordArray;
     
-    [Movie getInitialDataToDisplay:[self getDBPath]];
+    [Movie getRandomMovie:[self getDBPath]];
     Movie *mov = [movieArray objectAtIndex:0];
-    
+    lastMovieID = mov.mID;
     [Keywords getKeywordsForMovie:mov.mID dbPath:[self getDBPath]];
-    
+
     [_window makeKeyAndVisible];
 
     // Override point for customization after application launch.
@@ -97,6 +96,8 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [Movie finalizeStatements];
+    [Keywords finalizeStatements];
     /*
      Called when the application is about to terminate.
      Save data if appropriate.

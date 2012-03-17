@@ -15,4 +15,7 @@
     AppDelegate *appDelegate;
 }
 
+- (void) reloadTableView:(NSInteger)pk;
+
+
 @end

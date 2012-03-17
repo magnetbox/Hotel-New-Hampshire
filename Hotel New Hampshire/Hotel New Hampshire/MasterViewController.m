@@ -30,10 +30,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    Movie *mov = [appDelegate.movieArray objectAtIndex:0];
-    NSString* movieString = [NSString stringWithFormat:@"%@ (%d)", mov.mTitle, mov.mYear];
-    self.title = movieString;
 }
 
 - (void)viewDidUnload
@@ -46,6 +42,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    Movie *mov = [appDelegate.movieArray objectAtIndex:0];
+    NSString* movieString = [NSString stringWithFormat:@"%@ (%d)", mov.mTitle, mov.mYear];
+    self.title = movieString;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -70,7 +70,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"RECORDS: %d",[appDelegate.keywordArray count]);
+    NSLog(@"# OF KEYWORDS: %d",[appDelegate.keywordArray count]);
     return [appDelegate.keywordArray count];
 }
 
@@ -100,6 +100,37 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    Keywords *kObj = [appDelegate.keywordArray objectAtIndex:indexPath.row];
+    NSLog(@"KEYWORD CLICKED: %@",kObj.kTitle);
+    [self reloadTableView:kObj.kID];
+
+    /*
+    [Movie getMovieFromKeyword:kObj.kID dbPath:appDelegate.getDBPath];
+    if (appDelegate.movieArray) {
+        Movie *mov = [appDelegate.movieArray objectAtIndex:0];
+        appDelegate.lastMovieID = mov.mID;
+    } else {
+        [Movie getRandomMovie:[appDelegate getDBPath]];
+        Movie *mov = [appDelegate.movieArray objectAtIndex:0];
+    }
+    appDelegate.lastMovieID = mov.mID;
+    [Keywords getKeywordsForMovie:mov.mID dbPath:[self getDBPath]];
+    */
+
+}
+
+- (void)reloadTableView:(NSInteger)pk {
+    [Movie getMovieFromKeyword:pk dbPath:[appDelegate getDBPath]];
+    Movie *mov = [appDelegate.movieArray objectAtIndex:0];
+    appDelegate.lastMovieID = mov.mID;
+    [Keywords getKeywordsForMovie:mov.mID dbPath:[appDelegate getDBPath]];
+    
+    [self.tableView reloadData];
+    NSString* movieString = [NSString stringWithFormat:@"%@ (%d)", mov.mTitle, mov.mYear];
+    self.title = movieString;
+}
 
 /*
 // Override to support conditional editing of the table view.

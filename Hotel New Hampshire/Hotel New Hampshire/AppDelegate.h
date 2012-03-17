@@ -14,11 +14,13 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
     NSMutableArray *movieArray;
     NSMutableArray *keywordArray;
+    NSInteger lastMovieID;
 }
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, retain) NSMutableArray *movieArray;
 @property (nonatomic, retain) NSMutableArray *keywordArray;
+@property (nonatomic, assign) NSInteger lastMovieID;
 
 - (void) copyDatabaseIfNeeded;
 - (NSString *) getDBPath;

@@ -19,7 +19,7 @@
 @property (nonatomic, retain) NSString *mTitle;
 @property (nonatomic, assign) NSInteger mYear;
 
-+ (void) getInitialDataToDisplay:(NSString *)dbPath;
++ (void) getRandomMovie:(NSString *)dbPath;
 + (void) getMovieFromKeyword:(NSInteger)pk dbPath:(NSString *)dbPath;
 + (void) finalizeStatements;
 
