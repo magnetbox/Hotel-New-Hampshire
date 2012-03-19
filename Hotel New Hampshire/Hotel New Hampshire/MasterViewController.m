@@ -122,14 +122,30 @@
 }
 
 - (void)reloadTableView:(NSInteger)pk {
+
+    [appDelegate.movieArray removeAllObjects];
     [Movie getMovieFromKeyword:pk dbPath:[appDelegate getDBPath]];
-    Movie *mov = [appDelegate.movieArray objectAtIndex:0];
-    appDelegate.lastMovieID = mov.mID;
-    [Keywords getKeywordsForMovie:mov.mID dbPath:[appDelegate getDBPath]];
+
+    if(appDelegate.movieArray == nil || appDelegate.movieArray.count == 0){
+        NSLog(@"NO MOVIE, NEED TO GET RANDOM");
+        // if a movie was not found based on that keyword, get a random movie
+        [Movie getRandomMovie:[appDelegate getDBPath]];
+        Movie *mov = [appDelegate.movieArray objectAtIndex:0];
+        appDelegate.lastMovieID = mov.mID;
+        [Keywords getKeywordsForMovie:mov.mID dbPath:[appDelegate getDBPath]];
+        NSString* movieString = [NSString stringWithFormat:@"%@ (%d)", mov.mTitle, mov.mYear];
+        self.title = movieString;
+    } else {
+        NSLog(@"FOUND A MOVIE");
+        // if a movie was found based on that keyword, use it
+        Movie *mov = [appDelegate.movieArray objectAtIndex:0];
+        appDelegate.lastMovieID = mov.mID;
+        [Keywords getKeywordsForMovie:mov.mID dbPath:[appDelegate getDBPath]];
+        NSString* movieString = [NSString stringWithFormat:@"%@ (%d)", mov.mTitle, mov.mYear];
+        self.title = movieString;
+    }
     
     [self.tableView reloadData];
-    NSString* movieString = [NSString stringWithFormat:@"%@ (%d)", mov.mTitle, mov.mYear];
-    self.title = movieString;
 }
 
 /*

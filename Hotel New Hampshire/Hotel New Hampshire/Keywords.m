@@ -22,7 +22,7 @@ static sqlite3 *database = nil;
     
     if (sqlite3_open([dbPath UTF8String], &database) == SQLITE_OK) {
         
-        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM keyword JOIN movie_keyword ON keyword.id = movie_keyword.keyword_id WHERE movie_keyword.movie_id = %d",pk];
+        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM keyword JOIN movie_keyword ON keyword.id = movie_keyword.keyword_id WHERE movie_keyword.movie_id = %d ORDER BY RANDOM()",pk];
         
         sqlite3_stmt *selectstmt;
         

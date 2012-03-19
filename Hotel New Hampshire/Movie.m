@@ -27,6 +27,7 @@ static sqlite3 *database = nil;
         if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
             
             [appDelegate.movieArray removeAllObjects];
+            [appDelegate.keywordArray removeAllObjects];
             
             while(sqlite3_step(selectstmt) == SQLITE_ROW) {
                 
@@ -58,6 +59,7 @@ static sqlite3 *database = nil;
         if(sqlite3_prepare_v2(database, [sql UTF8String], -1, &selectstmt, NULL) == SQLITE_OK) {
             
             [appDelegate.movieArray removeAllObjects];
+            [appDelegate.keywordArray removeAllObjects];
             
             while(sqlite3_step(selectstmt) == SQLITE_ROW) {
                 
