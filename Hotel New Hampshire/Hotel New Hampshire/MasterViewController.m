@@ -30,6 +30,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"clamshell.png"]];
+    
 }
 
 - (void)viewDidUnload
@@ -41,11 +44,14 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [self.tableView setContentOffset:CGPointMake(0,-300) animated:NO];
+
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     Movie *mov = [appDelegate.movieArray objectAtIndex:0];
     NSString* movieString = [NSString stringWithFormat:@"%@ (%d)", mov.mTitle, mov.mYear];
     self.title = movieString;
+
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -93,9 +99,16 @@
     */
     
     // Customize keyword cell
+    cell.textLabel.font = [UIFont fontWithName:@"Futura-Medium" size:16.0];
+    cell.textLabel.textColor = [UIColor colorWithRed:245.0f/255.0f green:225.0f/255.0f blue:0.0f/255.0f alpha:1.0f];
+    cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+    cell.textLabel.numberOfLines = 0;
+
     Keywords *kObj = [appDelegate.keywordArray objectAtIndex:indexPath.row];
     NSString* keywordString = [NSString stringWithFormat:@"%@", kObj.kTitle];
-    cell.textLabel.text = [keywordString stringByReplacingOccurrencesOfString:@"-" withString:@" "];
+    keywordString = [keywordString stringByReplacingOccurrencesOfString:@"-" withString:@" "];
+    keywordString = [keywordString uppercaseString];    
+    cell.textLabel.text = keywordString;
     
     return cell;
 }
@@ -146,6 +159,11 @@
     }
     
     [self.tableView reloadData];
+
+    //scroll back to top of list
+    NSIndexPath *topIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:topIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+
 }
 
 /*
