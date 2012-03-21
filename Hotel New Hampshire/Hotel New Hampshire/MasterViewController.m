@@ -32,25 +32,9 @@
 	// Do any additional setup after loading the view, typically from a nib.
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
+    [self.navigationController setNavigationBarHidden:TRUE];
+    
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"clamshell.png"]];
-    
-    UIView *movieView = [[UIView alloc] initWithFrame:CGRectMake(0, 320, 350, 100)];
-    movieView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"leather.png"]];
-    
-    UILabel *movieTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 320, 80)];
-    movieTitle.backgroundColor = [UIColor clearColor];
-    movieTitle.font = [UIFont fontWithName:@"Futura-Medium" size:16.0];
-    movieTitle.textColor = [UIColor whiteColor];
-    movieTitle.lineBreakMode = UILineBreakModeWordWrap;    
-    movieTitle.numberOfLines = 2;
-    
-    Movie *mov = [appDelegate.movieArray objectAtIndex:0];
-    NSString* movieString = [NSString stringWithFormat:@"%@ (%d)", mov.mTitle, mov.mYear];
-    self.title = movieString;
-
-    movieTitle.text = movieString;
-    [movieView addSubview:movieTitle];
-    [self.view addSubview:movieView];
     
 }
 
@@ -63,11 +47,14 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.tableView setContentOffset:CGPointMake(0,-300) animated:NO];
+    //[self.tableView setContentOffset:CGPointMake(0,300) animated:NO];
+    [self.tableView setContentInset:UIEdgeInsetsMake(310,0,0,0)];
 
+    /*
     Movie *mov = [appDelegate.movieArray objectAtIndex:0];
     NSString* movieString = [NSString stringWithFormat:@"%@ (%d)", mov.mTitle, mov.mYear];
     self.title = movieString;
+     */
 
     [super viewWillAppear:animated];
 }
@@ -96,6 +83,34 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSLog(@"# OF KEYWORDS: %d",[appDelegate.keywordArray count]);
     return [appDelegate.keywordArray count];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    //UIView *movieView = [[UIView alloc] initWithFrame:CGRectMake(0, 320, 350, 100)];
+    UIView *movieView = [[UIView alloc] initWithFrame:CGRectMake(100,100,tableView.frame.size.width,100)];
+    movieView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"leather.png"]];    
+    
+    //UILabel *movieTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 320, 80)];
+    UILabel *movieTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, movieView.frame.size.width-20.0, movieView.frame.size.height-20.0)];
+    
+    movieTitle.backgroundColor = [UIColor clearColor];
+    movieTitle.font = [UIFont fontWithName:@"Futura-Medium" size:24.0];
+    movieTitle.textColor = [UIColor colorWithRed:253.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f];
+    movieTitle.textAlignment = UITextAlignmentCenter;
+    movieTitle.lineBreakMode = UILineBreakModeWordWrap;    
+    movieTitle.numberOfLines = 2;
+    
+    Movie *mov = [appDelegate.movieArray objectAtIndex:0];
+    NSString* movieString = [NSString stringWithFormat:@"%@ (%d)", mov.mTitle, mov.mYear];
+    movieString = [movieString uppercaseString];     
+    movieTitle.text = movieString;
+    
+    [movieView addSubview:movieTitle];    
+    return movieView;    
+}
+
+-(float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {    
+    return  100.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -17,6 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
     [self copyDatabaseIfNeeded];
     
     NSMutableArray *tempMovieArray = [[NSMutableArray alloc] init];
