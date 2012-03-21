@@ -30,12 +30,31 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    [self.navigationController setNavigationBarHidden:TRUE];
+    /*
+    UISwipeGestureRecognizer *recognizer;
+    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(countUp:)];
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionUp | UISwipeGestureRecognizerDirectionDown | UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft)];
+    [[self view] addGestureRecognizer:recognizer];
+     */
     
+    [self.navigationController setNavigationBarHidden:TRUE];
+    [self.tableView setContentInset:UIEdgeInsetsMake(315,0,0,0)];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"clamshell.png"]];
     
+}
+
+- (void) countUp:(UISwipeGestureRecognizer *)recognizer {
+    NSLog(@"get gesture");
+    NSLog(@"%d",recognizer.direction);
+    if (recognizer.direction == UISwipeGestureRecognizerDirectionUp) {
+        NSLog(@"get gesture up");
+    }
+    if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
+        NSLog(@"get gesture Left");
+    }
 }
 
 - (void)viewDidUnload
@@ -47,15 +66,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    //[self.tableView setContentOffset:CGPointMake(0,300) animated:NO];
-    [self.tableView setContentInset:UIEdgeInsetsMake(310,0,0,0)];
-
-    /*
-    Movie *mov = [appDelegate.movieArray objectAtIndex:0];
-    NSString* movieString = [NSString stringWithFormat:@"%@ (%d)", mov.mTitle, mov.mYear];
-    self.title = movieString;
-     */
-
     [super viewWillAppear:animated];
 }
 
@@ -87,8 +97,11 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     //UIView *movieView = [[UIView alloc] initWithFrame:CGRectMake(0, 320, 350, 100)];
-    UIView *movieView = [[UIView alloc] initWithFrame:CGRectMake(100,100,tableView.frame.size.width,100)];
+    UIView *movieView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,100)];
     movieView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"leather.png"]];    
+    
+    UIButton *movieButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, movieView.frame.size.width, movieView.frame.size.height)];
+    [movieButton addTarget:self action:@selector(scrollToNextKeyword) forControlEvents:UIControlEventTouchUpInside];
     
     //UILabel *movieTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 320, 80)];
     UILabel *movieTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, movieView.frame.size.width-20.0, movieView.frame.size.height-20.0)];
@@ -105,31 +118,18 @@
     movieString = [movieString uppercaseString];     
     movieTitle.text = movieString;
     
-    [movieView addSubview:movieTitle];    
+    [movieButton addSubview:movieTitle];
+    [movieView addSubview:movieButton];    
     return movieView;    
 }
 
--(float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {    
+- (float) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {    
     return  100.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // See if there's an existing cell we can reuse
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (cell == nil) {
-        // No cell to reuse => create a new one
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-        
-        // Initialize cell
-        // TODO: Any other initialization that applies to all cells of this type.
-    }
-    
-    /*
-    // Customize movie cell
-    Movie *movieObj = [appDelegate.movieArray objectAtIndex:indexPath.row];
-    NSString* movieString = [NSString stringWithFormat:@"%@ (%d)", movieObj.mTitle, movieObj.mYear];
-    cell.textLabel.text = movieString;
-    */
     
     // Customize keyword cell
     cell.textLabel.font = [UIFont fontWithName:@"Futura-Medium" size:16.0];
@@ -147,28 +147,24 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     Keywords *kObj = [appDelegate.keywordArray objectAtIndex:indexPath.row];
     NSLog(@"KEYWORD CLICKED: %@",kObj.kTitle);
     [self reloadTableView:kObj.kID];
+}
 
+- (void)scrollToNextKeyword {
     /*
-    [Movie getMovieFromKeyword:kObj.kID dbPath:appDelegate.getDBPath];
-    if (appDelegate.movieArray) {
-        Movie *mov = [appDelegate.movieArray objectAtIndex:0];
-        appDelegate.lastMovieID = mov.mID;
-    } else {
-        [Movie getRandomMovie:[appDelegate getDBPath]];
-        Movie *mov = [appDelegate.movieArray objectAtIndex:0];
-    }
-    appDelegate.lastMovieID = mov.mID;
-    [Keywords getKeywordsForMovie:mov.mID dbPath:[self getDBPath]];
-    */
-
+     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+     */
+    NSLog(@"%d",appDelegate.lastRow);
+    appDelegate.lastRow = appDelegate.lastRow+1;
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:appDelegate.lastRow inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 - (void)reloadTableView:(NSInteger)pk {
 
+    appDelegate.lastRow = 0;
     [appDelegate.movieArray removeAllObjects];
     [Movie getMovieFromKeyword:pk dbPath:[appDelegate getDBPath]];
 
@@ -198,43 +194,5 @@
     [self.tableView scrollToRowAtIndexPath:topIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
 
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 @end

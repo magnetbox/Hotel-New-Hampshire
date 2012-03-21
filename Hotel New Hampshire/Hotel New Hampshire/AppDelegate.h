@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSMutableArray *movieArray;
 @property (nonatomic, retain) NSMutableArray *keywordArray;
 @property (nonatomic, assign) NSInteger lastMovieID;
+@property (nonatomic, assign) NSInteger lastRow;
 
 - (void) copyDatabaseIfNeeded;
 - (NSString *) getDBPath;

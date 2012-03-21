@@ -15,6 +15,8 @@
     AppDelegate *appDelegate;
 }
 
+- (void) countUp:(UISwipeGestureRecognizer *)recognizer;
+- (void) scrollToNextKeyword;
 - (void) reloadTableView:(NSInteger)pk;
 
 

@@ -1,5 +1,7 @@
 TODO
+* Don't scroll to next item if at last row
+* Show selected keyword at top of list
 * Show message when no keyword connection found (and random movie is picked)
-* Show title at bottom, not in title bar
-* Keyword list should come up from bottom, showing 1 keyword at a time on flick
-* Scroll keywords list to top
+* Show 1 keyword at a time on swipe up
+
+
