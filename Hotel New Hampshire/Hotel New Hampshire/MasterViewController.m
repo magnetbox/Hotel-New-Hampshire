@@ -107,7 +107,7 @@
     UILabel *movieTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, movieView.frame.size.width-20.0, movieView.frame.size.height-20.0)];
     
     movieTitle.backgroundColor = [UIColor clearColor];
-    movieTitle.font = [UIFont fontWithName:@"Futura-Medium" size:24.0];
+    movieTitle.font = [UIFont fontWithName:@"Futura Md BT" size:24.0];
     movieTitle.textColor = [UIColor colorWithRed:253.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f];
     movieTitle.textAlignment = UITextAlignmentCenter;
     movieTitle.lineBreakMode = UILineBreakModeWordWrap;    
@@ -132,7 +132,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     // Customize keyword cell
-    cell.textLabel.font = [UIFont fontWithName:@"Futura-Medium" size:16.0];
+    cell.textLabel.font = [UIFont fontWithName:@"Futura Md BT" size:16.0];
     cell.textLabel.textColor = [UIColor colorWithRed:245.0f/255.0f green:225.0f/255.0f blue:0.0f/255.0f alpha:1.0f];
     cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
     cell.textLabel.numberOfLines = 0;
