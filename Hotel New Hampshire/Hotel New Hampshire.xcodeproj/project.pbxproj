@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B59AB64F15183A6C00AFF4E0 /* leather.png in Resources */ = {isa = PBXBuildFile; fileRef = B59AB64E15183A6C00AFF4E0 /* leather.png */; };
 		B5A6EB0F15183560006129C6 /* clamshell.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A6EB0E15183560006129C6 /* clamshell.png */; };
+		B5ECA0E8151E732800B3E988 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B5ECA0E7151E732800B3E988 /* logo.png */; };
 		BB13F14E150DCADE00545F6D /* Keywords.m in Sources */ = {isa = PBXBuildFile; fileRef = BB13F14D150DCADE00545F6D /* Keywords.m */; };
 		BBCA52FA150D9A27004D6439 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCA52F9150D9A27004D6439 /* libsqlite3.dylib */; };
 		BBCA52FC150D9DD9004D6439 /* imdb.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = BBCA52FB150D9DD9004D6439 /* imdb.sqlite */; };
@@ -27,6 +28,8 @@
 /* Begin PBXFileReference section */
 		B59AB64E15183A6C00AFF4E0 /* leather.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leather.png; sourceTree = "<group>"; };
 		B5A6EB0E15183560006129C6 /* clamshell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clamshell.png; sourceTree = "<group>"; };
+		B5ECA0E5151E732200B3E988 /* futurab.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = futurab.ttf; sourceTree = "<group>"; };
+		B5ECA0E7151E732800B3E988 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		BB13F14C150DCADE00545F6D /* Keywords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keywords.h; sourceTree = "<group>"; };
 		BB13F14D150DCADE00545F6D /* Keywords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keywords.m; sourceTree = "<group>"; };
 		BBCA52F9150D9A27004D6439 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -114,6 +117,8 @@
 		BBDE5FCE150D937900910FA3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B5ECA0E7151E732800B3E988 /* logo.png */,
+				B5ECA0E5151E732200B3E988 /* futurab.ttf */,
 				B59AB64E15183A6C00AFF4E0 /* leather.png */,
 				B5A6EB0E15183560006129C6 /* clamshell.png */,
 				BBCA52F9150D9A27004D6439 /* libsqlite3.dylib */,
@@ -181,6 +186,7 @@
 				BBCA52FC150D9DD9004D6439 /* imdb.sqlite in Resources */,
 				B5A6EB0F15183560006129C6 /* clamshell.png in Resources */,
 				B59AB64F15183A6C00AFF4E0 /* leather.png in Resources */,
+				B5ECA0E8151E732800B3E988 /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
