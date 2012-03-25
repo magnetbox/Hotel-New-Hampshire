@@ -13,7 +13,10 @@
 
 @interface MasterViewController : UITableViewController {
     AppDelegate *appDelegate;
+    UIView *randomMessage;
 }
+
+@property (nonatomic, retain) UIView *randomMessage;
 
 - (void) countUp:(UISwipeGestureRecognizer *)recognizer;
 - (void) scrollToNextKeyword;

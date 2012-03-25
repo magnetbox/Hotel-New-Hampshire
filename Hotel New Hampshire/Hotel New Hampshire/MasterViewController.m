@@ -11,7 +11,7 @@
 #import "Keywords.h"
 
 @implementation MasterViewController
-
+@synthesize randomMessage;
 
 - (void)awakeFromNib
 {
@@ -44,6 +44,18 @@
     [self.tableView setContentInset:UIEdgeInsetsMake(315,0,0,0)];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"clamshell.png"]];
     
+    randomMessage = [[UIView alloc] initWithFrame:CGRectMake(10,-150,self.tableView.frame.size.width-20,100)];
+    randomMessage.hidden = YES;
+    randomMessage.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+    UITextView *randomText = [[UITextView alloc] initWithFrame:CGRectMake(10, 10, randomMessage.frame.size.width-20.0, randomMessage.frame.size.height-20.0)];
+    randomText.backgroundColor = [UIColor clearColor];
+    randomText.font = [UIFont fontWithName:@"Futura-Medium" size:15.0];
+    randomText.textColor = [UIColor blackColor];
+    randomText.text = @"There are no other movies in the game based on that keyword, so a random movie has been chosen instead.";
+    [randomText setUserInteractionEnabled:NO];
+    [randomMessage setUserInteractionEnabled:NO];
+    [randomMessage addSubview:randomText];
+    [self.view addSubview:randomMessage];    
 }
 
 - (void) countUp:(UISwipeGestureRecognizer *)recognizer {
@@ -91,7 +103,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"# OF KEYWORDS: %d",[appDelegate.keywordArray count]);
+    NSLog(@"KEYWORD TOTAL: %d",[appDelegate.keywordArray count]);
     return [appDelegate.keywordArray count];
 }
 
@@ -149,27 +161,30 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Keywords *kObj = [appDelegate.keywordArray objectAtIndex:indexPath.row];
     NSLog(@"KEYWORD CLICKED: %@",kObj.kTitle);
+    appDelegate.lastKeywordSelected = kObj.kTitle;
     [self reloadTableView:kObj.kID];
 }
 
 - (void)scrollToNextKeyword {
-    /*
-     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-     */
-    NSLog(@"%d",appDelegate.lastRow);
-    appDelegate.lastRow = appDelegate.lastRow+1;
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:appDelegate.lastRow inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    //NSLog(@"%d of %d",appDelegate.lastKeywordRowViewed,[appDelegate.keywordArray count]);
+    randomMessage.hidden = YES; // make random message alert go away
+    
+    if (appDelegate.lastKeywordRowViewed < [appDelegate.keywordArray count]-1) {
+        appDelegate.lastKeywordRowViewed = appDelegate.lastKeywordRowViewed+1;
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:appDelegate.lastKeywordRowViewed inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
 }
 
 - (void)reloadTableView:(NSInteger)pk {
 
-    appDelegate.lastRow = 0;
+    appDelegate.lastKeywordRowViewed = 0;
     [appDelegate.movieArray removeAllObjects];
     [Movie getMovieFromKeyword:pk dbPath:[appDelegate getDBPath]];
 
     if(appDelegate.movieArray == nil || appDelegate.movieArray.count == 0){
-        NSLog(@"NO MOVIE, NEED TO GET RANDOM");
+        NSLog(@"MOVIE TYPE: RANDOM");
+        randomMessage.hidden = NO;
+
         // if a movie was not found based on that keyword, get a random movie
         [Movie getRandomMovie:[appDelegate getDBPath]];
         Movie *mov = [appDelegate.movieArray objectAtIndex:0];
@@ -177,8 +192,11 @@
         [Keywords getKeywordsForMovie:mov.mID dbPath:[appDelegate getDBPath]];
         NSString* movieString = [NSString stringWithFormat:@"%@ (%d)", mov.mTitle, mov.mYear];
         self.title = movieString;
+
     } else {
-        NSLog(@"FOUND A MOVIE");
+        NSLog(@"MOVIE TYPE: CONNECTED");
+        randomMessage.hidden = YES;
+
         // if a movie was found based on that keyword, use it
         Movie *mov = [appDelegate.movieArray objectAtIndex:0];
         appDelegate.lastMovieID = mov.mID;

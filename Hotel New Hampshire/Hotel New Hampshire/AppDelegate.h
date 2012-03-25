@@ -14,6 +14,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
     NSMutableArray *movieArray;
     NSMutableArray *keywordArray;
+    NSString *lastKeywordSelected;
     NSInteger lastMovieID;
 }
 
@@ -21,7 +22,8 @@
 @property (nonatomic, retain) NSMutableArray *movieArray;
 @property (nonatomic, retain) NSMutableArray *keywordArray;
 @property (nonatomic, assign) NSInteger lastMovieID;
-@property (nonatomic, assign) NSInteger lastRow;
+@property (nonatomic, retain) NSString *lastKeywordSelected;
+@property (nonatomic, assign) NSInteger lastKeywordRowViewed;
 
 - (void) copyDatabaseIfNeeded;
 - (NSString *) getDBPath;

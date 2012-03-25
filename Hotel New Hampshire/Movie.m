@@ -35,7 +35,7 @@ static sqlite3 *database = nil;
                 Movie *movieObj = [[Movie alloc] initWithPrimaryKey:primaryKey];
                 movieObj.mTitle = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)];
                 movieObj.mYear = sqlite3_column_int(selectstmt, 2);
-                NSLog(@"%@",movieObj.mTitle);
+                NSLog(@"MOVIE TITLE: %@",movieObj.mTitle);
                 
                 [appDelegate.movieArray addObject:movieObj];
             }
@@ -47,7 +47,7 @@ static sqlite3 *database = nil;
 
 + (void) getMovieFromKeyword:(NSInteger)pk dbPath:(NSString *)dbPath {
 
-    NSLog(@"KEYWORD PK: %d",pk);
+    //NSLog(@"KEYWORD PK: %d",pk);
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     if (sqlite3_open([dbPath UTF8String], &database) == SQLITE_OK) {

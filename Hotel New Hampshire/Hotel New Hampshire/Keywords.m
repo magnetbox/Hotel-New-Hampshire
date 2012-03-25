@@ -17,7 +17,7 @@ static sqlite3 *database = nil;
 
 + (void) getKeywordsForMovie:(NSInteger)pk dbPath:(NSString *)dbPath {
     
-    NSLog(@"MOVIE PK: %d",pk);
+    //NSLog(@"MOVIE PK: %d",pk);
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     if (sqlite3_open([dbPath UTF8String], &database) == SQLITE_OK) {
@@ -35,7 +35,11 @@ static sqlite3 *database = nil;
                 NSInteger primaryKey = sqlite3_column_int(selectstmt, 0);
                 Keywords *kObj = [[Keywords alloc] initWithPrimaryKey:primaryKey];                
                 kObj.kTitle = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)];
-                [appDelegate.keywordArray addObject:kObj];
+                if ([kObj.kTitle isEqualToString:appDelegate.lastKeywordSelected]) {
+                    [appDelegate.keywordArray insertObject:kObj atIndex:0];
+                } else {
+                    [appDelegate.keywordArray addObject:kObj];
+                }
             }
         }
         

@@ -13,11 +13,11 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize movieArray, keywordArray, lastMovieID, lastRow;
+@synthesize movieArray, keywordArray, lastMovieID, lastKeywordSelected, lastKeywordRowViewed;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    lastRow = 0;
+    lastKeywordRowViewed = 0;
     
     [self copyDatabaseIfNeeded];
     
