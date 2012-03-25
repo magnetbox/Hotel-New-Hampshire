@@ -14,11 +14,12 @@
 @interface MasterViewController : UITableViewController {
     AppDelegate *appDelegate;
     UIView *randomMessage;
+    UITextView *randomText;
 }
 
 @property (nonatomic, retain) UIView *randomMessage;
+@property (nonatomic, retain) UITextView *randomText;
 
-- (void) countUp:(UISwipeGestureRecognizer *)recognizer;
 - (void) scrollToNextKeyword;
 - (void) reloadTableView:(NSInteger)pk;
 

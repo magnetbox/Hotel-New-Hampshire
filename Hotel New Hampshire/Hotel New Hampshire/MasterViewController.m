@@ -11,7 +11,7 @@
 #import "Keywords.h"
 
 @implementation MasterViewController
-@synthesize randomMessage;
+@synthesize randomMessage, randomText;
 
 - (void)awakeFromNib
 {
@@ -33,40 +33,27 @@
     
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    /*
-    UISwipeGestureRecognizer *recognizer;
-    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(countUp:)];
-    [recognizer setDirection:(UISwipeGestureRecognizerDirectionUp | UISwipeGestureRecognizerDirectionDown | UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft)];
-    [[self view] addGestureRecognizer:recognizer];
-     */
+    self.title = @"Hotel New Hampshire";
+    [self.navigationController setNavigationBarHidden:TRUE animated:NO];
     
-    [self.navigationController setNavigationBarHidden:TRUE];
     [self.tableView setContentInset:UIEdgeInsetsMake(self.tableView.frame.size.height-150,0,0,0)];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"clamshell.png"]];
     
     randomMessage = [[UIView alloc] initWithFrame:CGRectMake(10,-150,self.tableView.frame.size.width-20,100)];
     randomMessage.hidden = YES;
     randomMessage.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-    UITextView *randomText = [[UITextView alloc] initWithFrame:CGRectMake(10, 10, randomMessage.frame.size.width-20.0, randomMessage.frame.size.height-20.0)];
+    
+    randomText = [[UITextView alloc] initWithFrame:CGRectMake(10, 10, randomMessage.frame.size.width-20.0, randomMessage.frame.size.height-20.0)];
     randomText.backgroundColor = [UIColor clearColor];
     randomText.font = [UIFont fontWithName:@"Futura-Medium" size:15.0];
     randomText.textColor = [UIColor blackColor];
     randomText.text = @"There are no other movies in the game based on that keyword, so a random movie has been chosen instead.";
+
     [randomText setUserInteractionEnabled:NO];
     [randomMessage setUserInteractionEnabled:NO];
     [randomMessage addSubview:randomText];
     [self.view addSubview:randomMessage];    
-}
 
-- (void) countUp:(UISwipeGestureRecognizer *)recognizer {
-    NSLog(@"get gesture");
-    NSLog(@"%d",recognizer.direction);
-    if (recognizer.direction == UISwipeGestureRecognizerDirectionUp) {
-        NSLog(@"get gesture up");
-    }
-    if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
-        NSLog(@"get gesture Left");
-    }
 }
 
 - (void)viewDidUnload
@@ -84,6 +71,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -94,6 +82,10 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
+}
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -108,15 +100,13 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    //UIView *movieView = [[UIView alloc] initWithFrame:CGRectMake(0, 320, 350, 100)];
     UIView *movieView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,100)];
     movieView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"leather.png"]];    
     
     UIButton *movieButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, movieView.frame.size.width, movieView.frame.size.height)];
     [movieButton addTarget:self action:@selector(scrollToNextKeyword) forControlEvents:UIControlEventTouchUpInside];
     
-    //UILabel *movieTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 320, 80)];
-    UILabel *movieTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, movieView.frame.size.width-20.0, movieView.frame.size.height-20.0)];
+    UILabel *movieTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, movieButton.frame.size.width-20.0, movieButton.frame.size.height-20.0)];
     
     movieTitle.backgroundColor = [UIColor clearColor];
     movieTitle.font = [UIFont fontWithName:@"Futura Md BT" size:24.0];
@@ -184,14 +174,21 @@
     if(appDelegate.movieArray == nil || appDelegate.movieArray.count == 0){
         NSLog(@"MOVIE TYPE: RANDOM");
         randomMessage.hidden = NO;
+        
+        NSLog(@"%d",pk);
+        if (pk==0) {
+            randomText.text = @"NEW RANDOM MOVIE!";
+            randomText.textAlignment = UITextAlignmentCenter;
+        } else {
+            randomText.text = @"There are no other movies in the game based on that keyword, so a random movie has been chosen instead.";
+            randomText.textAlignment = UITextAlignmentLeft;
+        }
 
         // if a movie was not found based on that keyword, get a random movie
         [Movie getRandomMovie:[appDelegate getDBPath]];
         Movie *mov = [appDelegate.movieArray objectAtIndex:0];
         appDelegate.lastMovieID = mov.mID;
         [Keywords getKeywordsForMovie:mov.mID dbPath:[appDelegate getDBPath]];
-        NSString* movieString = [NSString stringWithFormat:@"%@ (%d)", mov.mTitle, mov.mYear];
-        self.title = movieString;
 
     } else {
         NSLog(@"MOVIE TYPE: CONNECTED");
@@ -201,8 +198,6 @@
         Movie *mov = [appDelegate.movieArray objectAtIndex:0];
         appDelegate.lastMovieID = mov.mID;
         [Keywords getKeywordsForMovie:mov.mID dbPath:[appDelegate getDBPath]];
-        NSString* movieString = [NSString stringWithFormat:@"%@ (%d)", mov.mTitle, mov.mYear];
-        self.title = movieString;
     }
     
     [self.tableView reloadData];
@@ -211,6 +206,15 @@
     NSIndexPath *topIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView scrollToRowAtIndexPath:topIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
 
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+	if (motion == UIEventSubtypeMotionShake)
+	{
+		NSLog(@"shake");
+        [self reloadTableView:0];
+	}
 }
 
 @end

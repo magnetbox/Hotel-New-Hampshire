@@ -32,7 +32,6 @@
 		BBDE5FD8150D937900910FA3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDE5FD7150D937900910FA3 /* AppDelegate.m */; };
 		BBDE5FDB150D937900910FA3 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBDE5FD9150D937900910FA3 /* MainStoryboard.storyboard */; };
 		BBDE5FDE150D937900910FA3 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDE5FDD150D937900910FA3 /* MasterViewController.m */; };
-		BBDE5FE1150D937900910FA3 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDE5FE0150D937900910FA3 /* DetailViewController.m */; };
 		BBDE5FED150D93C800910FA3 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDE5FEC150D93C800910FA3 /* Movie.m */; };
 /* End PBXBuildFile section */
 
@@ -68,8 +67,6 @@
 		BBDE5FDA150D937900910FA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		BBDE5FDC150D937900910FA3 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		BBDE5FDD150D937900910FA3 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		BBDE5FDF150D937900910FA3 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		BBDE5FE0150D937900910FA3 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		BBDE5FEB150D93C800910FA3 /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Movie.h; path = ../Movie.h; sourceTree = "<group>"; };
 		BBDE5FEC150D93C800910FA3 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Movie.m; path = ../Movie.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,8 +121,6 @@
 				BBDE5FD9150D937900910FA3 /* MainStoryboard.storyboard */,
 				BBDE5FDC150D937900910FA3 /* MasterViewController.h */,
 				BBDE5FDD150D937900910FA3 /* MasterViewController.m */,
-				BBDE5FDF150D937900910FA3 /* DetailViewController.h */,
-				BBDE5FE0150D937900910FA3 /* DetailViewController.m */,
 				BBDE5FEB150D93C800910FA3 /* Movie.h */,
 				BBDE5FEC150D93C800910FA3 /* Movie.m */,
 				BB13F14C150DCADE00545F6D /* Keywords.h */,
@@ -242,7 +237,6 @@
 				BBDE5FD4150D937900910FA3 /* main.m in Sources */,
 				BBDE5FD8150D937900910FA3 /* AppDelegate.m in Sources */,
 				BBDE5FDE150D937900910FA3 /* MasterViewController.m in Sources */,
-				BBDE5FE1150D937900910FA3 /* DetailViewController.m in Sources */,
 				BBDE5FED150D93C800910FA3 /* Movie.m in Sources */,
 				BB13F14E150DCADE00545F6D /* Keywords.m in Sources */,
 			);
