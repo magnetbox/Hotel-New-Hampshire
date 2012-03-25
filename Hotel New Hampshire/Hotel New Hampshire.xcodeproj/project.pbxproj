@@ -12,6 +12,16 @@
 		B5ECA0E8151E732800B3E988 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B5ECA0E7151E732800B3E988 /* logo.png */; };
 		BB13F14E150DCADE00545F6D /* Keywords.m in Sources */ = {isa = PBXBuildFile; fileRef = BB13F14D150DCADE00545F6D /* Keywords.m */; };
 		BB51EC3A151E8652000F50BC /* Futura Bold BT.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB51EC39151E8652000F50BC /* Futura Bold BT.ttf */; };
+		BB51EC46151EB922000F50BC /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = BB51EC3C151EB922000F50BC /* Icon-72.png */; };
+		BB51EC47151EB922000F50BC /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB51EC3D151EB922000F50BC /* Icon-72@2x.png */; };
+		BB51EC48151EB922000F50BC /* Icon-AppStore.png in Resources */ = {isa = PBXBuildFile; fileRef = BB51EC3E151EB922000F50BC /* Icon-AppStore.png */; };
+		BB51EC49151EB922000F50BC /* Icon-AppStore@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB51EC3F151EB922000F50BC /* Icon-AppStore@2x.png */; };
+		BB51EC4A151EB922000F50BC /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = BB51EC40151EB922000F50BC /* Icon-Small-50.png */; };
+		BB51EC4B151EB922000F50BC /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB51EC41151EB922000F50BC /* Icon-Small-50@2x.png */; };
+		BB51EC4C151EB922000F50BC /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = BB51EC42151EB922000F50BC /* Icon-Small.png */; };
+		BB51EC4D151EB922000F50BC /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB51EC43151EB922000F50BC /* Icon-Small@2x.png */; };
+		BB51EC4E151EB922000F50BC /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BB51EC44151EB922000F50BC /* Icon.png */; };
+		BB51EC4F151EB922000F50BC /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB51EC45151EB922000F50BC /* Icon@2x.png */; };
 		BBCA52FA150D9A27004D6439 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCA52F9150D9A27004D6439 /* libsqlite3.dylib */; };
 		BBCA52FC150D9DD9004D6439 /* imdb.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = BBCA52FB150D9DD9004D6439 /* imdb.sqlite */; };
 		BBDE5FC8150D937900910FA3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBDE5FC7150D937900910FA3 /* UIKit.framework */; };
@@ -33,6 +43,16 @@
 		BB13F14C150DCADE00545F6D /* Keywords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keywords.h; sourceTree = "<group>"; };
 		BB13F14D150DCADE00545F6D /* Keywords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keywords.m; sourceTree = "<group>"; };
 		BB51EC39151E8652000F50BC /* Futura Bold BT.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura Bold BT.ttf"; sourceTree = "<group>"; };
+		BB51EC3C151EB922000F50BC /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		BB51EC3D151EB922000F50BC /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		BB51EC3E151EB922000F50BC /* Icon-AppStore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-AppStore.png"; sourceTree = "<group>"; };
+		BB51EC3F151EB922000F50BC /* Icon-AppStore@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-AppStore@2x.png"; sourceTree = "<group>"; };
+		BB51EC40151EB922000F50BC /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		BB51EC41151EB922000F50BC /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = "<group>"; };
+		BB51EC42151EB922000F50BC /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		BB51EC43151EB922000F50BC /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		BB51EC44151EB922000F50BC /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		BB51EC45151EB922000F50BC /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		BBCA52F9150D9A27004D6439 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		BBCA52FB150D9DD9004D6439 /* imdb.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = imdb.sqlite; path = ../imdb.sqlite; sourceTree = "<group>"; };
 		BBDE5FC3150D937900910FA3 /* Hotel New Hampshire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hotel New Hampshire.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +138,16 @@
 		BBDE5FCE150D937900910FA3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BB51EC3C151EB922000F50BC /* Icon-72.png */,
+				BB51EC3D151EB922000F50BC /* Icon-72@2x.png */,
+				BB51EC3E151EB922000F50BC /* Icon-AppStore.png */,
+				BB51EC3F151EB922000F50BC /* Icon-AppStore@2x.png */,
+				BB51EC40151EB922000F50BC /* Icon-Small-50.png */,
+				BB51EC41151EB922000F50BC /* Icon-Small-50@2x.png */,
+				BB51EC42151EB922000F50BC /* Icon-Small.png */,
+				BB51EC43151EB922000F50BC /* Icon-Small@2x.png */,
+				BB51EC44151EB922000F50BC /* Icon.png */,
+				BB51EC45151EB922000F50BC /* Icon@2x.png */,
 				BB51EC39151E8652000F50BC /* Futura Bold BT.ttf */,
 				B5ECA0E7151E732800B3E988 /* logo.png */,
 				B59AB64E15183A6C00AFF4E0 /* leather.png */,
@@ -189,6 +219,16 @@
 				B59AB64F15183A6C00AFF4E0 /* leather.png in Resources */,
 				B5ECA0E8151E732800B3E988 /* logo.png in Resources */,
 				BB51EC3A151E8652000F50BC /* Futura Bold BT.ttf in Resources */,
+				BB51EC46151EB922000F50BC /* Icon-72.png in Resources */,
+				BB51EC47151EB922000F50BC /* Icon-72@2x.png in Resources */,
+				BB51EC48151EB922000F50BC /* Icon-AppStore.png in Resources */,
+				BB51EC49151EB922000F50BC /* Icon-AppStore@2x.png in Resources */,
+				BB51EC4A151EB922000F50BC /* Icon-Small-50.png in Resources */,
+				BB51EC4B151EB922000F50BC /* Icon-Small-50@2x.png in Resources */,
+				BB51EC4C151EB922000F50BC /* Icon-Small.png in Resources */,
+				BB51EC4D151EB922000F50BC /* Icon-Small@2x.png in Resources */,
+				BB51EC4E151EB922000F50BC /* Icon.png in Resources */,
+				BB51EC4F151EB922000F50BC /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,7 +321,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hotel New Hampshire/Hotel New Hampshire-Prefix.pch";
 				INFOPLIST_FILE = "Hotel New Hampshire/Hotel New Hampshire-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -292,7 +334,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hotel New Hampshire/Hotel New Hampshire-Prefix.pch";
 				INFOPLIST_FILE = "Hotel New Hampshire/Hotel New Hampshire-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

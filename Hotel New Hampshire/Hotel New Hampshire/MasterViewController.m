@@ -41,7 +41,7 @@
      */
     
     [self.navigationController setNavigationBarHidden:TRUE];
-    [self.tableView setContentInset:UIEdgeInsetsMake(315,0,0,0)];
+    [self.tableView setContentInset:UIEdgeInsetsMake(self.tableView.frame.size.height-150,0,0,0)];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"clamshell.png"]];
     
     randomMessage = [[UIView alloc] initWithFrame:CGRectMake(10,-150,self.tableView.frame.size.width-20,100)];
@@ -120,7 +120,7 @@
     
     movieTitle.backgroundColor = [UIColor clearColor];
     movieTitle.font = [UIFont fontWithName:@"Futura Md BT" size:24.0];
-    movieTitle.textColor = [UIColor colorWithRed:253.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f];
+    movieTitle.textColor = [UIColor colorWithRed:255.0f/255.0f green:180.0f/255.0f blue:180.0f/255.0f alpha:1.0f];
     movieTitle.textAlignment = UITextAlignmentCenter;
     movieTitle.lineBreakMode = UILineBreakModeWordWrap;    
     movieTitle.numberOfLines = 2;
