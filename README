@@ -1,3 +1,8 @@
 TODO
+* Show help text on initial launch
+* Hide help text on pinch
+* Show help text on unpinch
+* Save state of seeing help into NSUserDefaults
+* Save state of game into NSUserDefaults
 * Show 1 keyword at a time on swipe up
 * Remove indexes from database
