@@ -106,18 +106,50 @@
     UIButton *movieButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, movieView.frame.size.width, movieView.frame.size.height)];
     [movieButton addTarget:self action:@selector(scrollToNextKeyword) forControlEvents:UIControlEventTouchUpInside];
     
-    UILabel *movieTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, movieButton.frame.size.width-20.0, movieButton.frame.size.height-20.0)];
+    UILabel *movieTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, movieButton.frame.size.width-20.0, movieButton.frame.size.height-20.0) ];
     
     movieTitle.backgroundColor = [UIColor clearColor];
-    movieTitle.font = [UIFont fontWithName:@"Futura Md BT" size:24.0];
+    UIFont *font = [UIFont fontWithName:@"Futura Md BT" size:24.0];
     movieTitle.textColor = [UIColor colorWithRed:255.0f/255.0f green:180.0f/255.0f blue:180.0f/255.0f alpha:1.0f];
     movieTitle.textAlignment = UITextAlignmentCenter;
     movieTitle.lineBreakMode = UILineBreakModeWordWrap;    
-    movieTitle.numberOfLines = 2;
+    movieTitle.numberOfLines = 3;
     
     Movie *mov = [appDelegate.movieArray objectAtIndex:0];
     NSString* movieString = [NSString stringWithFormat:@"%@ (%d)", mov.mTitle, mov.mYear];
     movieString = [movieString uppercaseString];     
+
+    /* Time to calculate the needed font size.
+     This for loop starts at the largest font size, and decreases by two point sizes (i=i-2)
+     Until it either hits a size that will fit or hits the minimum size we want to allow (i > 10) */
+    int i;
+    for(i = 24; i > 10; i=i-2)
+    {
+        // Set the new font size.
+        font = [font fontWithSize:i];
+        // You can log the size you're trying: NSLog(@"Trying size: %u", i);
+        
+        /* This step is important: We make a constraint box 
+         using only the fixed WIDTH of the UILabel. The height will
+         be checked later. */ 
+        CGSize constraintSize = CGSizeMake(260.0f, MAXFLOAT);
+        
+        // This step checks how tall the label would be with the desired font.
+        CGSize labelSize = [movieString sizeWithFont:font constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+        
+        /* Here is where you use the height requirement!
+         Set the value in the if statement to the height of your UILabel
+         If the label fits into your required height, it will break the loop
+         and use that font size. */
+        if(labelSize.height <= 80.0f)
+            break;
+    }
+    // You can see what size the function is using by outputting: NSLog(@"Best size is: %u", i);
+    
+    // Set the UILabel's font to the newly adjusted font.
+    movieTitle.font = font;
+    
+    // Put the text into the UILabel outlet variable.
     movieTitle.text = movieString;
     
     [movieButton addSubview:movieTitle];

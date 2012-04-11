@@ -9,7 +9,6 @@ TODO
 * Movie title: cream with text shadow
 * Add drop shadow and gloss to leather
 * Fix table/button alignment + height
-* Scale title to fit long titles (borat, strangelove, etc)
 * Implement keyword selection animation (other keywords slide left, new movie slides in, selection slides down)
 * Implement random movie animation (other keywords slide left, messaging appears with selection, new movie slides in, first keyword slides up)
 * Center keywords?
