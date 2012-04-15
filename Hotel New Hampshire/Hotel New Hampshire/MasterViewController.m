@@ -111,7 +111,9 @@
     
     movieTitle.backgroundColor = [UIColor clearColor];
     UIFont *font = [UIFont fontWithName:@"Futura Md BT" size:24.0];
-    movieTitle.textColor = [UIColor colorWithRed:255.0f/255.0f green:180.0f/255.0f blue:180.0f/255.0f alpha:1.0f];
+    movieTitle.textColor = [UIColor colorWithRed:230.0f/255.0f green:210.0f/255.0f blue:170.0f/255.0f alpha:1.0f];
+    movieTitle.shadowColor = [UIColor colorWithRed:85.0f/255.0f green:60.0f/255.0f blue:10.0f/255.0f alpha:1.0f];
+    movieTitle.shadowOffset = CGSizeMake(1,1);
     movieTitle.textAlignment = UITextAlignmentCenter;
     movieTitle.lineBreakMode = UILineBreakModeWordWrap;    
     movieTitle.numberOfLines = 3;
