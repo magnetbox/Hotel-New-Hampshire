@@ -4,7 +4,6 @@ TODO
 * Show help text on unpinch
 * Save state of seeing help into NSUserDefaults
 * Save state of game into NSUserDefaults
-* Add drop shadow and gloss to leather
 * Fix table/button alignment + height
 * Implement keyword selection animation (other keywords slide left, new movie slides in, selection slides down)
 * Implement random movie animation (other keywords slide left, messaging appears with selection, new movie slides in, first keyword slides up)
