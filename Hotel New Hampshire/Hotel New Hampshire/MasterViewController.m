@@ -36,7 +36,7 @@
     self.title = @"Hotel New Hampshire";
     [self.navigationController setNavigationBarHidden:TRUE animated:NO];
     
-    [self.tableView setContentInset:UIEdgeInsetsMake(self.tableView.frame.size.height-150,0,0,0)];
+    [self.tableView setContentInset:UIEdgeInsetsMake(self.tableView.frame.size.height-142,0,0,0)];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"clamshell.png"]];
     
     randomMessage = [[UIView alloc] initWithFrame:CGRectMake(10,-150,self.tableView.frame.size.width-20,100)];
