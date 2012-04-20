@@ -15,10 +15,14 @@
     AppDelegate *appDelegate;
     UIView *randomMessage;
     UITextView *randomText;
+    UIScrollView *helpView;
+    UITextView *helpText;
 }
 
 @property (nonatomic, retain) UIView *randomMessage;
 @property (nonatomic, retain) UITextView *randomText;
+@property (nonatomic, retain) UIScrollView *helpView;
+@property (nonatomic, retain) UITextView *helpText;
 
 - (void) scrollToNextKeyword;
 - (void) reloadTableView:(NSInteger)pk;

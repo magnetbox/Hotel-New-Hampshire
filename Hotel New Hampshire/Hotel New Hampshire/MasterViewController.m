@@ -11,7 +11,7 @@
 #import "Keywords.h"
 
 @implementation MasterViewController
-@synthesize randomMessage, randomText;
+@synthesize randomMessage, randomText, helpView, helpText;
 
 - (void)awakeFromNib
 {
@@ -39,6 +39,7 @@
     [self.tableView setContentInset:UIEdgeInsetsMake(self.tableView.frame.size.height-142,0,0,0)];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"clamshell.png"]];
     
+    // load hidden random message alert box
     randomMessage = [[UIView alloc] initWithFrame:CGRectMake(10,-150,self.tableView.frame.size.width-20,100)];
     randomMessage.hidden = YES;
     randomMessage.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
@@ -52,8 +53,45 @@
     [randomText setUserInteractionEnabled:NO];
     [randomMessage setUserInteractionEnabled:NO];
     [randomMessage addSubview:randomText];
-    [self.view addSubview:randomMessage];    
+    [self.view addSubview:randomMessage];
+    
+    // load help box
+    helpView = [[UIScrollView alloc] initWithFrame:CGRectMake(10,150-self.view.frame.size.height,self.view.frame.size.width-20,self.view.frame.size.height-20)];
+    helpView.contentSize = CGSizeMake(self.view.frame.size.width, 3000);
+    helpView.backgroundColor = [UIColor whiteColor];
+    helpView.showsHorizontalScrollIndicator = FALSE;
+    helpView.showsVerticalScrollIndicator = TRUE;
+    helpView.delegate = self;
+    
+    helpText = [[UITextView alloc] initWithFrame:CGRectMake(10, 10, helpView.frame.size.width-20.0, helpView.frame.size.height-20.0)];
+    helpText.text = @"This is how you play the game.\r\n\r\nPinch to make the help go away.\r\nUnpinch to bring the help back.";
+    
+    UIPinchGestureRecognizer *pinchToHideHelp = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(hideHelp:)];
+    [helpView addGestureRecognizer:pinchToHideHelp];
 
+    UIPinchGestureRecognizer *pinchToShowHelp = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(showHelp:)];
+    [self.tableView addGestureRecognizer:pinchToShowHelp];
+
+    [helpView addSubview:helpText];
+    [self.view addSubview:helpView];
+    
+
+}
+
+-(void)hideHelp:(UIPinchGestureRecognizer *)recognizer {
+    
+    if (recognizer.state == UIGestureRecognizerStateEnded)
+    {
+        helpView.hidden = YES;
+    }
+}
+
+-(void)showHelp:(UIPinchGestureRecognizer *)recognizer {
+    
+    if (recognizer.state == UIGestureRecognizerStateEnded)
+    {
+        helpView.hidden = NO;
+    }
 }
 
 - (void)viewDidUnload
