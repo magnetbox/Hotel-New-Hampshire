@@ -64,13 +64,10 @@
     helpView.delegate = self;
     
     helpText = [[UITextView alloc] initWithFrame:CGRectMake(10, 10, helpView.frame.size.width-20.0, helpView.frame.size.height-20.0)];
-    helpText.text = @"This is how you play the game.\r\n\r\nPinch to make the help go away.\r\nUnpinch to bring the help back.";
+    helpText.text = @"This is how you play the game.\r\n\r\nUnpinch to make the help go away.\r\nPinch to bring the help back.";
     
-    UIPinchGestureRecognizer *pinchToHideHelp = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(hideHelp:)];
-    [helpView addGestureRecognizer:pinchToHideHelp];
-
-    UIPinchGestureRecognizer *pinchToShowHelp = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(showHelp:)];
-    [self.tableView addGestureRecognizer:pinchToShowHelp];
+    UIPinchGestureRecognizer *pinchToToggleHelp = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(toggleHelp:)];
+    [self.tableView addGestureRecognizer:pinchToToggleHelp];
 
     [helpView addSubview:helpText];
     [self.view addSubview:helpView];
@@ -78,19 +75,15 @@
 
 }
 
--(void)hideHelp:(UIPinchGestureRecognizer *)recognizer {
+-(void)toggleHelp:(UIPinchGestureRecognizer *)recognizer {
     
     if (recognizer.state == UIGestureRecognizerStateEnded)
     {
-        helpView.hidden = YES;
-    }
-}
-
--(void)showHelp:(UIPinchGestureRecognizer *)recognizer {
-    
-    if (recognizer.state == UIGestureRecognizerStateEnded)
-    {
-        helpView.hidden = NO;
+        if([recognizer scale]<1.0) {
+            helpView.hidden = NO;
+        } else {
+            helpView.hidden = YES;
+        }
     }
 }
 
