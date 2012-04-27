@@ -13,13 +13,13 @@
 
 @interface MasterViewController : UITableViewController {
     AppDelegate *appDelegate;
-    UIView *randomMessage;
+    UIView *randomView;
     UITextView *randomText;
     UIScrollView *helpView;
     UITextView *helpText;
 }
 
-@property (nonatomic, retain) UIView *randomMessage;
+@property (nonatomic, retain) UIView *randomView;
 @property (nonatomic, retain) UITextView *randomText;
 @property (nonatomic, retain) UIScrollView *helpView;
 @property (nonatomic, retain) UITextView *helpText;

@@ -11,7 +11,7 @@
 #import "Keywords.h"
 
 @implementation MasterViewController
-@synthesize randomMessage, randomText, helpView, helpText;
+@synthesize randomView, randomText, helpView, helpText;
 
 - (void)awakeFromNib
 {
@@ -28,9 +28,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    
+        
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     self.title = @"Hotel New Hampshire";
@@ -40,20 +38,20 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"clamshell.png"]];
     
     // load hidden random message alert box
-    randomMessage = [[UIView alloc] initWithFrame:CGRectMake(10,-150,self.tableView.frame.size.width-20,100)];
-    randomMessage.hidden = YES;
-    randomMessage.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+    randomView = [[UIView alloc] initWithFrame:CGRectMake(10,-150,self.tableView.frame.size.width-20,100)];
+    randomView.hidden = YES;
+    randomView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
     
-    randomText = [[UITextView alloc] initWithFrame:CGRectMake(10, 10, randomMessage.frame.size.width-20.0, randomMessage.frame.size.height-20.0)];
+    randomText = [[UITextView alloc] initWithFrame:CGRectMake(10, 10, randomView.frame.size.width-20.0, randomView.frame.size.height-20.0)];
     randomText.backgroundColor = [UIColor clearColor];
     randomText.font = [UIFont fontWithName:@"Futura-Medium" size:15.0];
     randomText.textColor = [UIColor blackColor];
     randomText.text = @"There are no other movies in the game based on that keyword, so a random movie has been chosen instead.";
 
     [randomText setUserInteractionEnabled:NO];
-    [randomMessage setUserInteractionEnabled:NO];
-    [randomMessage addSubview:randomText];
-    [self.view addSubview:randomMessage];
+    [randomView setUserInteractionEnabled:NO];
+    [randomView addSubview:randomText];
+    [self.view addSubview:randomView];
     
     // load help box
     helpView = [[UIScrollView alloc] initWithFrame:CGRectMake(10,150-self.view.frame.size.height,self.view.frame.size.width-20,self.view.frame.size.height-20)];
@@ -69,9 +67,20 @@
     UIPinchGestureRecognizer *pinchToToggleHelp = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(toggleHelp:)];
     [self.tableView addGestureRecognizer:pinchToToggleHelp];
 
+    [helpText setUserInteractionEnabled:NO];
+    [helpView setUserInteractionEnabled:NO];
     [helpView addSubview:helpText];
     [self.view addSubview:helpView];
     
+    // if help has never been seen before, show it and save that it's been seen
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"seenHelp"]) {
+        helpView.hidden = NO;
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:YES forKey:@"seenHelp"];
+        [defaults synchronize];
+    }
+    
+    [super viewDidLoad];
 
 }
 
@@ -223,7 +232,7 @@
 
 - (void)scrollToNextKeyword {
     //NSLog(@"%d of %d",appDelegate.lastKeywordRowViewed,[appDelegate.keywordArray count]);
-    randomMessage.hidden = YES; // make random message alert go away
+    randomView.hidden = YES; // make random message alert go away
     
     if (appDelegate.lastKeywordRowViewed < [appDelegate.keywordArray count]-1) {
         appDelegate.lastKeywordRowViewed = appDelegate.lastKeywordRowViewed+1;
@@ -239,7 +248,7 @@
 
     if(appDelegate.movieArray == nil || appDelegate.movieArray.count == 0){
         NSLog(@"MOVIE TYPE: RANDOM");
-        randomMessage.hidden = NO;
+        randomView.hidden = NO;
         
         NSLog(@"%d",pk);
         if (pk==0) {
@@ -258,7 +267,7 @@
 
     } else {
         NSLog(@"MOVIE TYPE: CONNECTED");
-        randomMessage.hidden = YES;
+        randomView.hidden = YES;
 
         // if a movie was found based on that keyword, use it
         Movie *mov = [appDelegate.movieArray objectAtIndex:0];
