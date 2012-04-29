@@ -28,10 +28,21 @@
     NSMutableArray *tempKeywordArray = [[NSMutableArray alloc] init];
     self.keywordArray = tempKeywordArray;
     
-    [Movie getRandomMovie:[self getDBPath]];
-    Movie *mov = [movieArray objectAtIndex:0];
-    lastMovieID = mov.mID;
-    [Keywords getKeywordsForMovie:mov.mID dbPath:[self getDBPath]];
+    // get the last movie seen or a random movie
+    if (![[NSUserDefaults standardUserDefaults] integerForKey:@"lastMovieID"]) {
+        NSLog(@"LAST MOVIE STATUS: NO LASTMOVIEID, GET RANDOM");
+        [Movie getRandomMovie:[self getDBPath]];
+        Movie *mov = [movieArray objectAtIndex:0];
+        lastMovieID = mov.mID;
+        [Keywords getKeywordsForMovie:mov.mID dbPath:[self getDBPath]];
+    } else {
+        NSLog(@"LAST MOVIE STATUS: HAS A LASTMOVIEID OF %d",[[NSUserDefaults standardUserDefaults] integerForKey:@"lastMovieID"]);
+        [Movie getMovieFromID:[[NSUserDefaults standardUserDefaults] integerForKey:@"lastMovieID"] dbPath:[self getDBPath]];
+        Movie *mov = [movieArray objectAtIndex:0];
+        lastMovieID = mov.mID;
+        [Keywords getKeywordsForMovie:mov.mID dbPath:[self getDBPath]];
+    }
+
 
     [_window makeKeyAndVisible];
 
@@ -78,6 +89,11 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:self.lastMovieID forKey:@"lastMovieID"];
+    [defaults synchronize];
+    NSLog(@"Save to NSUSerDefaults: %d",self.lastMovieID);
+    
     /*
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.

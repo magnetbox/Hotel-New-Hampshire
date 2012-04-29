@@ -21,6 +21,7 @@
 
 + (void) getRandomMovie:(NSString *)dbPath;
 + (void) getMovieFromKeyword:(NSInteger)pk dbPath:(NSString *)dbPath;
++ (void) getMovieFromID:(NSInteger)pk dbPath:(NSString *)dbPath;
 + (void) finalizeStatements;
 
 //Instance methods.

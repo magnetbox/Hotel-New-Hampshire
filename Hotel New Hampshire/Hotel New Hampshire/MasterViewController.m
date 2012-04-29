@@ -74,10 +74,13 @@
     
     // if help has never been seen before, show it and save that it's been seen
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"seenHelp"]) {
+        NSLog(@"HELP: NEVER SEEN IT");
         helpView.hidden = NO;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:YES forKey:@"seenHelp"];
         [defaults synchronize];
+    } else {
+        NSLog(@"HELP: SEEN IT");
     }
     
     [super viewDidLoad];
