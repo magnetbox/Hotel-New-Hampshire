@@ -1,6 +1,0 @@
-TODO
-* Implement keyword selection animation (other keywords slide left, new movie slides in, selection slides down)
-* Implement random movie animation (other keywords slide left, messaging appears with selection, new movie slides in, first keyword slides up)
-* Center keywords?
-* Show 1 keyword at a time on swipe up
-* Remove indexes from database
