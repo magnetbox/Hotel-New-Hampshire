@@ -11,7 +11,7 @@
 #import "Keywords.h"
 
 @implementation MasterViewController
-@synthesize randomView, randomText, helpView, helpText;
+@synthesize randomView, randomText, helpView, welcomeTo, welcomeTitle, welcomeFooter, helpText, helpFooter;
 
 - (void)awakeFromNib
 {
@@ -38,7 +38,7 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"clamshell.png"]];
     
     // load hidden random message alert box
-    randomView = [[UIView alloc] initWithFrame:CGRectMake(10,-150,self.tableView.frame.size.width-20,100)];
+    randomView = [[UIImageView alloc] initWithFrame:CGRectMake(10,-150,self.tableView.frame.size.width-20,100)];
     randomView.hidden = YES;
     randomView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
     
@@ -53,25 +53,64 @@
     [randomView addSubview:randomText];
     [self.view addSubview:randomView];
     
-    // load help box
-    helpView = [[UIScrollView alloc] initWithFrame:CGRectMake(10,150-self.view.frame.size.height,self.view.frame.size.width-20,self.view.frame.size.height-20)];
-    helpView.contentSize = CGSizeMake(self.view.frame.size.width, 3000);
-    helpView.backgroundColor = [UIColor whiteColor];
-    helpView.showsHorizontalScrollIndicator = FALSE;
-    helpView.showsVerticalScrollIndicator = TRUE;
-    helpView.delegate = self;
+    // help view
+    helpView = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height)];
+    helpView.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:210.0f/255.0f blue:170.0f/255.0f alpha:1.0f];
+    [self.navigationController.view addSubview:helpView];
+    [self.navigationController.view bringSubviewToFront:helpView];
     
-    helpText = [[UITextView alloc] initWithFrame:CGRectMake(10, 10, helpView.frame.size.width-20.0, helpView.frame.size.height-20.0)];
-    helpText.text = @"This is how you play the game.\r\n\r\nUnpinch to make the help go away.\r\nPinch to bring the help back.";
+    // welcomeTo text
+    welcomeTo = [[UITextView alloc] initWithFrame:CGRectMake(10, 10, helpView.frame.size.width-20.0, helpView.frame.size.height-20.0) ];
+    welcomeTo.font = [UIFont fontWithName:@"Futura Md BT" size:12.0];
+    welcomeTo.textColor = [UIColor blackColor];
+    welcomeTo.backgroundColor = [UIColor clearColor];
+    welcomeTo.textAlignment = UITextAlignmentCenter;
+    welcomeTo.text = @"WELCOME TO THE";
+    [welcomeTo setUserInteractionEnabled:NO];
+    [helpView addSubview:welcomeTo];
     
-    UIPinchGestureRecognizer *pinchToToggleHelp = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(toggleHelp:)];
-    [self.tableView addGestureRecognizer:pinchToToggleHelp];
-
-    [helpText setUserInteractionEnabled:NO];
+    // welcomeTitle text
+    welcomeTitle = [[UITextView alloc] initWithFrame:CGRectMake(10, 30, helpView.frame.size.width-20.0, helpView.frame.size.height-20.0) ];
+    welcomeTitle.font = [UIFont fontWithName:@"Futura Md BT" size:40.0];
+    welcomeTitle.backgroundColor = [UIColor clearColor];
+    welcomeTitle.textColor = [UIColor blackColor];
+    welcomeTitle.textAlignment = UITextAlignmentCenter;
+    welcomeTitle.text = [self.title uppercaseString];
+    [welcomeTitle setUserInteractionEnabled:NO];
+    [helpView addSubview:welcomeTitle];
+    
+    // welcomeFooter text
+    welcomeFooter = [[UITextView alloc] initWithFrame:CGRectMake(10, 135, helpView.frame.size.width-20.0, helpView.frame.size.height-20.0) ];
+    welcomeFooter.font = [UIFont fontWithName:@"Futura Md BT" size:12.0];
+    welcomeFooter.textColor = [UIColor blackColor];
+    welcomeFooter.backgroundColor = [UIColor clearColor];
+    welcomeFooter.textAlignment = UITextAlignmentCenter;
+    welcomeFooter.text = @"A MOVIE GUESSING GAME";
+    [welcomeFooter setUserInteractionEnabled:NO];
+    [helpView addSubview:welcomeFooter];
+    
+    // help text
+    helpText = [[UITextView alloc] initWithFrame:CGRectMake(33, 170, 255, 300)];
+    helpText.backgroundColor = [UIColor clearColor];
+    helpText.text = @"You are given a title and a keyword: keep the title to yourself; read the keyword aloud; encourage your guests to guess the film. For another keyword, tap the title and read on.\r\n\r\nOnce the film is named, tap the keyword that gave it away to reveal another film which has the keyword in common. Begin again.\r\n\r\nTo pass on an unfamiliar title, reselect the keyword. To shake things up, shake for a random movie.\r\n\r\nPlay as you please: limit the guesses per player; pass to the guest who guessed the film; pass to your right; be your own guest. Welcome.";
+    helpText.font = [UIFont fontWithName:@"Futura" size:9.0];
+    helpText.text = [helpText.text uppercaseString];
     [helpView setUserInteractionEnabled:NO];
     [helpView addSubview:helpText];
-    [self.view addSubview:helpView];
     
+    // helpFooter text
+    helpFooter = [[UITextView alloc] initWithFrame:CGRectMake(10, helpView.frame.size.height-60.0, helpView.frame.size.width-20.0, 100.0) ];
+    helpFooter.backgroundColor = [UIColor clearColor];
+    helpFooter.font = [UIFont fontWithName:@"Futura Md BT" size:12.0];
+    helpFooter.textColor = [UIColor blackColor];
+    helpFooter.textAlignment = UITextAlignmentCenter;
+    helpFooter.text = @"UNPINCH TO DISMISS THE HELP\r\nPINCH TO SUMMON THE HELP";
+    [helpFooter setUserInteractionEnabled:NO];
+    [helpView addSubview:helpFooter];
+
+    UIPinchGestureRecognizer *pinchToToggleHelp = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(toggleHelp:)];
+    [self.navigationController.view addGestureRecognizer:pinchToToggleHelp];
+
     // if help has never been seen before, show it and save that it's been seen
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"seenHelp"]) {
         NSLog(@"HELP: NEVER SEEN IT");

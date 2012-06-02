@@ -15,14 +15,22 @@
     AppDelegate *appDelegate;
     UIView *randomView;
     UITextView *randomText;
-    UIScrollView *helpView;
+    UIView *helpView;
+    UITextView *welcomeTo;
+    UITextView *welcomeTitle;
+    UITextView *welcomeFooter;
     UITextView *helpText;
+    UITextView *helpFooter;
 }
 
 @property (nonatomic, retain) UIView *randomView;
 @property (nonatomic, retain) UITextView *randomText;
-@property (nonatomic, retain) UIScrollView *helpView;
+@property (nonatomic, retain) UIView *helpView;
+@property (nonatomic, retain) UITextView *welcomeTo;
+@property (nonatomic, retain) UITextView *welcomeTitle;
+@property (nonatomic, retain) UITextView *welcomeFooter;
 @property (nonatomic, retain) UITextView *helpText;
+@property (nonatomic, retain) UITextView *helpFooter;
 
 - (void) scrollToNextKeyword;
 - (void) reloadTableView:(NSInteger)pk;
