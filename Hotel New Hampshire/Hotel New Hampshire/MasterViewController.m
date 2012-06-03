@@ -60,9 +60,6 @@
     movieTitle.lineBreakMode = UILineBreakModeWordWrap;    
     movieTitle.numberOfLines = 3;
     
-    Movie *mov = [appDelegate.movieArray objectAtIndex:0];
-    [self setMovieButtonTitle:mov];
-    
     [movieButton addSubview:movieTitle];
     [movieView addSubview:movieButton];    
     [self.navigationController.view addSubview:movieView];    
@@ -141,7 +138,7 @@
     [helpOpacity addSubview:welcomeFooter];
     
     // help text
-    helpText = [[UILabel alloc] initWithFrame:CGRectMake(33, 142, 255, 220)];
+    helpText = [[UILabel alloc] initWithFrame:CGRectMake(42, 142, 240, 220)];
     helpText.backgroundColor = [UIColor clearColor];
     helpText.text = @"You are given a title and a keyword: keep the title to yourself; read the keyword aloud; encourage your guests to guess the film. For another keyword, tap the title and read on.\r\n\r\nOnce the film is named, tap the keyword that gave it away to reveal another film which has the keyword in common. Begin again.\r\n\r\nTo pass on an unfamiliar title, reselect the keyword. To shake things up, shake for a random movie.\r\n\r\nPlay as you please: limit the guesses per player; pass to the guest who guessed the film; pass to your right; be your own guest. Welcome.";
     [helpText setFont:[UIFont fontWithName:@"Futura" size:9.0]];
@@ -181,6 +178,9 @@
         helpView.hidden = YES;
         NSLog(@"HELP: SEEN IT");
     }
+    
+    Movie *mov = [appDelegate.movieArray objectAtIndex:0];
+    [self setMovieButtonTitle:mov];
     
     [super viewDidLoad];
 
