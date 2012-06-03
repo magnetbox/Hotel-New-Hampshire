@@ -34,8 +34,14 @@
     self.title = @"Hotel New Hampshire";
     [self.navigationController setNavigationBarHidden:TRUE animated:NO];
     
+    // set background image to be static
+    UIView *patternView = [[UIView alloc] initWithFrame:self.tableView.frame];
+    patternView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"clamshell.png"]];
+    patternView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.tableView.backgroundView = patternView;
+
+    // start keyword table from bottom of view
     [self.tableView setContentInset:UIEdgeInsetsMake(self.tableView.frame.size.height-142,0,0,0)];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"clamshell.png"]];
     
     // load hidden random message alert box
     randomView = [[UIImageView alloc] initWithFrame:CGRectMake(10,-150,self.tableView.frame.size.width-20,100)];
@@ -47,7 +53,6 @@
     randomText.font = [UIFont fontWithName:@"Futura-Medium" size:15.0];
     randomText.textColor = [UIColor blackColor];
     randomText.text = @"There are no other movies in the game based on that keyword, so a random movie has been chosen instead.";
-
     [randomText setUserInteractionEnabled:NO];
     [randomView setUserInteractionEnabled:NO];
     [randomView addSubview:randomText];
@@ -152,13 +157,24 @@
 
 -(void)toggleHelp:(UIPinchGestureRecognizer *)recognizer {
     
+    CGFloat lastScale = 1.0;
+    
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        lastScale = [recognizer scale];
+    }
+
     if (recognizer.state == UIGestureRecognizerStateEnded)
     {
-        if([recognizer scale]<1.0) {
+        CGFloat pinchscale = [recognizer scale];
+        CGFloat currentScale = 1.0 - (lastScale - pinchscale);
+
+        NSLog(@"PINCH SCALE: %f",currentScale);
+        if(currentScale<1.0) {
             helpView.hidden = NO;
         } else {
             helpView.hidden = YES;
         }
+        lastScale = [recognizer scale];
     }
 }
 
