@@ -17,26 +17,32 @@
     UITextView *randomText;
     UIView *helpView;
     UIView *helpOpacity;
-    UITextView *welcomeTo;
-    UITextView *welcomeTitle;
-    UITextView *welcomeTitle2;
-    UITextView *welcomeFooter;
-    UITextView *helpText;
+    UILabel *welcomeTo;
+    UILabel *welcomeTitle;
+    UILabel *welcomeTitle2;
+    UILabel *welcomeFooter;
+    UILabel *helpText;
     UIView *helpFooterImage;
     UILabel *helpFooter;
+    UIView *movieView;
+    UIButton *movieButton;
+    UILabel *movieTitle;
 }
 
 @property (nonatomic, retain) UIView *randomView;
 @property (nonatomic, retain) UITextView *randomText;
 @property (nonatomic, retain) UIView *helpView;
 @property (nonatomic, retain) UIView *helpOpacity;
-@property (nonatomic, retain) UITextView *welcomeTo;
-@property (nonatomic, retain) UITextView *welcomeTitle;
-@property (nonatomic, retain) UITextView *welcomeTitle2;
-@property (nonatomic, retain) UITextView *welcomeFooter;
-@property (nonatomic, retain) UITextView *helpText;
+@property (nonatomic, retain) UILabel *welcomeTo;
+@property (nonatomic, retain) UILabel *welcomeTitle;
+@property (nonatomic, retain) UILabel *welcomeTitle2;
+@property (nonatomic, retain) UILabel *welcomeFooter;
+@property (nonatomic, retain) UILabel *helpText;
 @property (nonatomic, retain) UIView *helpFooterImage;
 @property (nonatomic, retain) UILabel *helpFooter;
+@property (nonatomic, retain) UIView *movieView;
+@property (nonatomic, retain) UIButton *movieButton;
+@property (nonatomic, retain) UILabel *movieTitle;
 
 - (void) scrollToNextKeyword;
 - (void) reloadTableView:(NSInteger)pk;
