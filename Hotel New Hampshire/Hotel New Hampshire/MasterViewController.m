@@ -66,7 +66,7 @@
     
 
     // load hidden random message alert box
-    randomView = [[UIImageView alloc] initWithFrame:CGRectMake(10,-150,self.tableView.frame.size.width-20,100)];
+    randomView = [[UIView alloc] initWithFrame:CGRectMake(10,-150,self.tableView.frame.size.width-20,100)];
     randomView.hidden = YES;
     randomView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
     
@@ -175,10 +175,11 @@
         [defaults setBool:YES forKey:@"seenHelp"];
         [defaults synchronize];
     } else {
-        helpView.hidden = YES;
         NSLog(@"HELP: SEEN IT");
+        helpView.hidden = YES;
     }
     
+    // set movie title
     Movie *mov = [appDelegate.movieArray objectAtIndex:0];
     [self setMovieButtonTitle:mov];
     
@@ -199,11 +200,28 @@
         CGFloat pinchscale = [sender scale];
         CGFloat currentScale = 1.0 - (lastScale - pinchscale);
         
-        NSLog(@"PINCH SCALE: %f",currentScale);
-        if(currentScale<1.0) {
-            helpView.hidden = NO;
+        if(currentScale<1.0 && helpView.isHidden) {
+
+            NSLog(@"PINCH");
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:0.5];
+            [helpView setAlpha:0];
+            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+            [helpView setHidden:NO];
+            [helpView setAlpha:1];
+            [UIView commitAnimations];
+            
         } else {
-            helpView.hidden = YES;
+            
+            NSLog(@"UNPINCH");
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:0.5];
+            [helpView setAlpha:1];
+            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+            [helpView setHidden:YES];
+            [helpView setAlpha:0];
+            [UIView commitAnimations];
+
         }
         lastScale = [sender scale];
     }
@@ -212,7 +230,13 @@
 -(void)closeHelp:(UITapGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateEnded) {
         NSLog(@"TAP!");
-        helpView.hidden = YES;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.5];
+        [helpView setAlpha:1];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [helpView setHidden:YES];
+        [helpView setAlpha:0];
+        [UIView commitAnimations];
     }
 }
 
@@ -339,21 +363,29 @@
 
 - (void)reloadTableView:(NSInteger)pk {
 
+    NSLog(@"RELOAD TABLE");
     appDelegate.lastKeywordRowViewed = 0;
     [appDelegate.movieArray removeAllObjects];
     [Movie getMovieFromKeyword:pk dbPath:[appDelegate getDBPath]];
 
     if(appDelegate.movieArray == nil || appDelegate.movieArray.count == 0){
         NSLog(@"MOVIE TYPE: RANDOM");
-        randomView.hidden = NO;
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.1];
+        [randomView setAlpha:0];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [randomView setHidden:NO];
+        [randomView setAlpha:1];
+        [UIView commitAnimations];
         
         NSLog(@"%d",pk);
-        if (pk==0) {
-            randomText.text = @"NEW RANDOM MOVIE!";
-            randomText.textAlignment = UITextAlignmentCenter;
-        } else {
-            randomText.text = @"There are no other movies in the game based on that keyword, so a random movie has been chosen instead.";
+        if (pk!=0) {
+            randomText.text = [@"There are no other movies in the game based on that keyword, so a random movie has been chosen instead." uppercaseString];
             randomText.textAlignment = UITextAlignmentLeft;
+        } else {
+            randomText.text = [@"New random movie!" uppercaseString];
+            randomText.textAlignment = UITextAlignmentCenter;
         }
 
         // if a movie was not found based on that keyword, get a random movie
