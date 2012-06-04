@@ -11,7 +11,7 @@
 #import "Keywords.h"
 
 @implementation MasterViewController
-@synthesize randomView, randomText, helpView, helpOpacity, welcomeTo, welcomeTitle, welcomeTitle2, welcomeFooter, helpText, helpFooterImage, helpFooter, movieView, movieButton, movieTitle;
+@synthesize randomView, randomText, helpView, helpOpacity, welcomeTitle, welcomeTitle2, welcomeFooter, helpText, helpFooterImage, helpFooter, movieView, movieButton, movieTitle;
 
 - (void)awakeFromNib
 {
@@ -66,17 +66,19 @@
     
 
     // load hidden random message alert box
-    randomView = [[UIView alloc] initWithFrame:CGRectMake(10,-150,self.tableView.frame.size.width-20,100)];
+    randomView = [[UIView alloc] initWithFrame:CGRectMake(10,-180,self.tableView.frame.size.width-20,100)];
     randomView.hidden = YES;
-    randomView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-    
-    randomText = [[UITextView alloc] initWithFrame:CGRectMake(10, 10, randomView.frame.size.width-20.0, randomView.frame.size.height-20.0)];
+    randomView.backgroundColor = [UIColor clearColor];
+
+    randomText = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, randomView.frame.size.width-20.0, randomView.frame.size.height-20.0)];
     randomText.backgroundColor = [UIColor clearColor];
-    randomText.font = [UIFont fontWithName:@"Futura-Medium" size:15.0];
-    randomText.textColor = [UIColor blackColor];
-    randomText.text = @"There are no other movies in the game based on that keyword, so a random movie has been chosen instead.";
-    //[randomText setUserInteractionEnabled:NO];
-    //[randomView setUserInteractionEnabled:NO];
+    randomText.font = [UIFont fontWithName:@"Futura Md BT" size:15.0];
+    randomText.textColor = [UIColor colorWithRed:91.0f/255.0f green:130.0f/255.0f blue:135.0f/255.0f alpha:1.0f];
+    randomText.shadowColor = [UIColor colorWithRed:178.0f/255.0f green:208.0f/255.0f blue:212.0f/255.0f alpha:1.0f];
+    randomText.shadowOffset = CGSizeMake(1,1);
+    randomText.textAlignment = UITextAlignmentCenter;
+    randomText.numberOfLines = 0;
+    randomText.text = @"NEW RANDOM MOVIE!";
     [randomView addSubview:randomText];
     [self.view addSubview:randomView];
     
@@ -87,7 +89,6 @@
     [self.navigationController.view bringSubviewToFront:helpView];
     
     // helpFooter image
-    //helpFooterImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"leather.png"]];
     helpFooterImage = [[UIView alloc] initWithFrame:CGRectMake(0, helpView.frame.size.height-100.0, helpView.frame.size.width, 100.0)];
     helpFooterImage.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"leather.png"]];
     [helpView addSubview:helpFooterImage];
@@ -97,18 +98,6 @@
     helpOpacity.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3f];
     [helpView addSubview:helpOpacity];
     
-    // welcomeTo text
-    /*
-    welcomeTo = [[UITextView alloc] initWithFrame:CGRectMake(0,0,helpView.frame.size.width,30)];
-    welcomeTo.font = [UIFont fontWithName:@"Futura Md BT" size:12.0];
-    welcomeTo.textColor = [UIColor blackColor];
-    welcomeTo.backgroundColor = [UIColor clearColor];
-    welcomeTo.textAlignment = UITextAlignmentCenter;
-    welcomeTo.text = @"WELCOME TO THE";
-    [welcomeTo setUserInteractionEnabled:NO];
-    [helpOpacity addSubview:welcomeTo];
-    */
-    
     // welcomeTitle text
     welcomeTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, helpView.frame.size.width, 40)];
     [welcomeTitle setFont:[UIFont fontWithName:@"Futura Md BT" size:40.0]];
@@ -116,7 +105,6 @@
     welcomeTitle.textColor = [UIColor colorWithRed:245.0f/255.0f green:225.0f/255.0f blue:0.0f/255.0f alpha:1.0f];
     welcomeTitle.textAlignment = UITextAlignmentCenter;
     welcomeTitle.text = @"HOTEL NEW";
-    //[welcomeTitle setUserInteractionEnabled:NO];
     [helpOpacity addSubview:welcomeTitle];
     welcomeTitle2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 60, helpView.frame.size.width, 40)];
     [welcomeTitle2 setFont:[UIFont fontWithName:@"Futura Md BT" size:40.0]];
@@ -124,7 +112,6 @@
     welcomeTitle2.textColor = [UIColor colorWithRed:245.0f/255.0f green:225.0f/255.0f blue:0.0f/255.0f alpha:1.0f];
     welcomeTitle2.textAlignment = UITextAlignmentCenter;
     welcomeTitle2.text = @"HAMPSHIRE";
-    //[welcomeTitle2 setUserInteractionEnabled:NO];
     [helpOpacity addSubview:welcomeTitle2];
     
     // welcomeFooter text
@@ -134,7 +121,6 @@
     welcomeFooter.backgroundColor = [UIColor clearColor];
     welcomeFooter.textAlignment = UITextAlignmentCenter;
     welcomeFooter.text = @"A MOVIE GUESSING GAME";
-    //[welcomeFooter setUserInteractionEnabled:NO];
     [helpOpacity addSubview:welcomeFooter];
     
     // help text
@@ -145,7 +131,6 @@
     helpText.text = [helpText.text uppercaseString];
     helpText.lineBreakMode = UILineBreakModeWordWrap;
     helpText.numberOfLines = 0;
-    //[helpView setUserInteractionEnabled:NO];
     [helpOpacity addSubview:helpText];
     
     // helpFooter text
@@ -158,7 +143,6 @@
     helpFooter.textAlignment = UITextAlignmentCenter;
     helpFooter.numberOfLines = 0;
     helpFooter.text = @"TAP TO DISMISS THE HELP\r\nPINCH TO SUMMON THE HELP";
-    //[helpFooter setUserInteractionEnabled:NO];
     [helpOpacity addSubview:helpFooter];
 
     UIPinchGestureRecognizer *pinchToToggleHelp = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(toggleHelp:)];
@@ -246,15 +230,13 @@
     NSString* movieString = [NSString stringWithFormat:@"%@ (%d)", mov.mTitle, mov.mYear];
     movieString = [movieString uppercaseString];     
     
-    /* Time to calculate the needed font size.
-     This for loop starts at the largest font size, and decreases by two point sizes (i=i-2)
-     Until it either hits a size that will fit or hits the minimum size we want to allow (i > 10) */
+    /* Calculate the needed font size. This for loop starts at the largest font size, and decreases by two point sizes (i=i-2) until it either hits a size that will fit or hits the minimum size we want to allow (i > 10) */
     int i;
     for(i = 24; i > 10; i=i-2)
     {
         // Set the new font size.
         font = [font fontWithSize:i];
-        // You can log the size you're trying: NSLog(@"Trying size: %u", i);
+        // NSLog(@"Trying size: %u", i);
         
         /* This step is important: We make a constraint box 
          using only the fixed WIDTH of the UILabel. The height will
@@ -372,7 +354,7 @@
         NSLog(@"MOVIE TYPE: RANDOM");
         
         [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.1];
+        [UIView setAnimationDuration:0.5];
         [randomView setAlpha:0];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         [randomView setHidden:NO];
@@ -381,11 +363,9 @@
         
         NSLog(@"%d",pk);
         if (pk!=0) {
-            randomText.text = [@"There are no other movies in the game based on that keyword, so a random movie has been chosen instead." uppercaseString];
-            randomText.textAlignment = UITextAlignmentLeft;
+            randomText.text = [@"There are no other movies in the game based on that keyword, so a random movie has been chosen instead" uppercaseString];
         } else {
-            randomText.text = [@"New random movie!" uppercaseString];
-            randomText.textAlignment = UITextAlignmentCenter;
+            randomText.text = @"NEW RANDOM MOVIE!";
         }
 
         // if a movie was not found based on that keyword, get a random movie

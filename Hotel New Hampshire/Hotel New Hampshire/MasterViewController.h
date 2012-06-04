@@ -14,10 +14,9 @@
 @interface MasterViewController : UITableViewController {
     AppDelegate *appDelegate;
     UIView *randomView;
-    UITextView *randomText;
+    UILabel *randomText;
     UIView *helpView;
     UIView *helpOpacity;
-    UILabel *welcomeTo;
     UILabel *welcomeTitle;
     UILabel *welcomeTitle2;
     UILabel *welcomeFooter;
@@ -30,10 +29,9 @@
 }
 
 @property (nonatomic, retain) UIView *randomView;
-@property (nonatomic, retain) UITextView *randomText;
+@property (nonatomic, retain) UILabel *randomText;
 @property (nonatomic, retain) UIView *helpView;
 @property (nonatomic, retain) UIView *helpOpacity;
-@property (nonatomic, retain) UILabel *welcomeTo;
 @property (nonatomic, retain) UILabel *welcomeTitle;
 @property (nonatomic, retain) UILabel *welcomeTitle2;
 @property (nonatomic, retain) UILabel *welcomeFooter;
