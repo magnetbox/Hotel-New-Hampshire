@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B59AB64F15183A6C00AFF4E0 /* leather.png in Resources */ = {isa = PBXBuildFile; fileRef = B59AB64E15183A6C00AFF4E0 /* leather.png */; };
 		B5A6EB0F15183560006129C6 /* clamshell.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A6EB0E15183560006129C6 /* clamshell.png */; };
-		B5ECA0E8151E732800B3E988 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B5ECA0E7151E732800B3E988 /* logo.png */; };
 		BB13F14E150DCADE00545F6D /* Keywords.m in Sources */ = {isa = PBXBuildFile; fileRef = BB13F14D150DCADE00545F6D /* Keywords.m */; };
 		BB51EC3A151E8652000F50BC /* Futura Bold BT.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB51EC39151E8652000F50BC /* Futura Bold BT.ttf */; };
 		BB51EC46151EB922000F50BC /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = BB51EC3C151EB922000F50BC /* Icon-72.png */; };
@@ -38,7 +37,6 @@
 /* Begin PBXFileReference section */
 		B59AB64E15183A6C00AFF4E0 /* leather.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leather.png; sourceTree = "<group>"; };
 		B5A6EB0E15183560006129C6 /* clamshell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clamshell.png; sourceTree = "<group>"; };
-		B5ECA0E7151E732800B3E988 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		BB13F14C150DCADE00545F6D /* Keywords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keywords.h; sourceTree = "<group>"; };
 		BB13F14D150DCADE00545F6D /* Keywords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keywords.m; sourceTree = "<group>"; };
 		BB51EC39151E8652000F50BC /* Futura Bold BT.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura Bold BT.ttf"; sourceTree = "<group>"; };
@@ -144,7 +142,6 @@
 				BB51EC44151EB922000F50BC /* Icon.png */,
 				BB51EC45151EB922000F50BC /* Icon@2x.png */,
 				BB51EC39151E8652000F50BC /* Futura Bold BT.ttf */,
-				B5ECA0E7151E732800B3E988 /* logo.png */,
 				B59AB64E15183A6C00AFF4E0 /* leather.png */,
 				B5A6EB0E15183560006129C6 /* clamshell.png */,
 				BBCA52F9150D9A27004D6439 /* libsqlite3.dylib */,
@@ -212,7 +209,6 @@
 				BBCA52FC150D9DD9004D6439 /* imdb.sqlite in Resources */,
 				B5A6EB0F15183560006129C6 /* clamshell.png in Resources */,
 				B59AB64F15183A6C00AFF4E0 /* leather.png in Resources */,
-				B5ECA0E8151E732800B3E988 /* logo.png in Resources */,
 				BB51EC3A151E8652000F50BC /* Futura Bold BT.ttf in Resources */,
 				BB51EC46151EB922000F50BC /* Icon-72.png in Resources */,
 				BB51EC47151EB922000F50BC /* Icon-72@2x.png in Resources */,
