@@ -124,7 +124,7 @@
     [helpOpacity addSubview:welcomeFooter];
     
     // help text
-    helpText = [[UILabel alloc] initWithFrame:CGRectMake(42, 142, 240, 220)];
+    helpText = [[UILabel alloc] initWithFrame:CGRectMake((helpView.frame.size.width-234)/2, 142, 240, 220)];
     helpText.backgroundColor = [UIColor clearColor];
     helpText.text = @"You are given a title and a keyword: keep the title to yourself; read the keyword aloud; encourage your guests to guess the film. For another keyword, tap the title and read on.\r\n\r\nOnce the film is named, tap the keyword that gave it away to reveal another film which has the keyword in common. Begin again.\r\n\r\nTo pass on an unfamiliar title, reselect the keyword. To shake things up, shake for a random movie.\r\n\r\nPlay as you please: limit the guesses per player; pass to the guest who guessed the film; pass to your right; be your own guest. Welcome.";
     [helpText setFont:[UIFont fontWithName:@"Futura" size:9.0]];
@@ -316,6 +316,8 @@
     cell.textLabel.textColor = [UIColor colorWithRed:245.0f/255.0f green:225.0f/255.0f blue:0.0f/255.0f alpha:1.0f];
     cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
     cell.textLabel.numberOfLines = 0;
+    cell.selectedBackgroundView = [[UIView alloc] initWithFrame:self.tableView.frame];
+    cell.selectedBackgroundView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
 
     Keywords *kObj = [appDelegate.keywordArray objectAtIndex:indexPath.row];
     NSString* keywordString = [NSString stringWithFormat:@"%@", kObj.kTitle];
