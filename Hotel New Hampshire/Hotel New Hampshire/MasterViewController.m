@@ -400,7 +400,7 @@
 {
 	if (motion == UIEventSubtypeMotionShake)
 	{
-		NSLog(@"shake");
+		NSLog(@"SHAKE!");
         [self reloadTableView:0];
 	}
 }

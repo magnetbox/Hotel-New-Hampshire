@@ -47,12 +47,11 @@ static sqlite3 *database = nil;
 
 + (void) getMovieFromKeyword:(NSInteger)pk dbPath:(NSString *)dbPath {
     
-    //NSLog(@"KEYWORD PK: %d",pk);
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     if (sqlite3_open([dbPath UTF8String], &database) == SQLITE_OK) {
         
-        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM title JOIN movie_keyword ON title.id = movie_keyword.movie_id WHERE keyword_id = %d ORDER BY RANDOM() LIMIT 1",pk];
+        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM title JOIN movie_keyword ON title.id = movie_keyword.movie_id WHERE keyword_id = %d ORDER BY RANDOM() LIMIT 2",pk];
         
         sqlite3_stmt *selectstmt;
         
