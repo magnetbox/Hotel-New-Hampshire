@@ -19,9 +19,9 @@
 @property (nonatomic, retain) NSString *mTitle;
 @property (nonatomic, assign) NSInteger mYear;
 
-+ (void) getRandomMovie:(NSString *)dbPath;
-+ (void) getMovieFromKeyword:(NSInteger)pk dbPath:(NSString *)dbPath;
-+ (void) getMovieFromID:(NSInteger)pk dbPath:(NSString *)dbPath;
++ (Movie*) getRandomMovie:(NSString *)dbPath;
++ (Movie*) getMovieFromKeyword:(NSInteger)pk dbPath:(NSString *)dbPath;
++ (Movie*) getMovieFromID:(NSInteger)pk dbPath:(NSString *)dbPath;
 + (void) finalizeStatements;
 
 //Instance methods.

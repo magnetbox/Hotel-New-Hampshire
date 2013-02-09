@@ -17,7 +17,7 @@
 @property (nonatomic, readonly) NSInteger kID;
 @property (nonatomic, retain) NSString *kTitle;
 
-+ (void) getKeywordsForMovie:(NSInteger)pk dbPath:(NSString *)dbPath;
++ (Keywords*) getKeywordsForMovie:(NSInteger)pk dbPath:(NSString *)dbPath;
 + (void) finalizeStatements;
 
 //Instance methods.
