@@ -237,7 +237,8 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [defaultGame count];
+    //return [defaultGame count];
+    return 1;
 }
 
 /*

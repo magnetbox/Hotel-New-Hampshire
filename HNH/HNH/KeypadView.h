@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Movie.h"
 
 @interface KeypadView : UIView {
-    IBOutlet UILabel *display;
+    IBOutlet UIButton *movieButton;
+    IBOutlet UILabel *movieTitle;
 }
 
-@property (nonatomic, retain) UILabel *display;
+@property (nonatomic, retain) UIButton *movieButton;
+@property (nonatomic, retain) UILabel *movieTitle;
+
+-(void)setMovieButtonTitle:(Movie *)mov;
 
 @end

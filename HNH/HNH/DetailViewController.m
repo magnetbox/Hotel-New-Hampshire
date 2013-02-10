@@ -21,19 +21,31 @@
 
 @synthesize detailItem = _detailItem;
 @synthesize game, keypad, keywordList;
+@synthesize currentMovie, currentKeywords;
 @synthesize movieArray, keywordArray, lastMovieID, lastKeywordSelected, lastKeywordRowViewed;
 
 #pragma mark - Managing the detail item
 
 - (void)buttonPressed:(id)sender {
     NSLog(@"DIGIT PRESSED: %d", [sender tag]);
-    NSInteger total = [keypad.display.text intValue];
-    keypad.display.text = [NSString stringWithFormat:@"%d", total+[sender tag]];
+    //NSInteger total = [keypad.display.text intValue];
+    //keypad.display.text = [NSString stringWithFormat:@"%d", total+[sender tag]];
 }
 
 - (void)clearDisplay {
     NSLog(@"CLEAR");
-    keypad.display.text = @"0";
+    //keypad.display.text = @"0";
+}
+
+- (void)scrollToNextKeyword {
+    NSLog(@"NEXT WORD");
+    //NSLog(@"%d of %d",appDelegate.lastKeywordRowViewed,[appDelegate.keywordArray count]);
+    //randomView.hidden = YES; // make random message alert go away
+    
+    if (lastKeywordRowViewed < [self.currentKeywords count]-1) {
+        lastKeywordRowViewed = lastKeywordRowViewed+1;
+        [self.keywordList scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:lastKeywordRowViewed inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
 }
 
 - (void)endTurn:(id)sender {
@@ -87,9 +99,13 @@
     game = self.game;
 
     NSLog(@"TITLE: %@",self.title);
-    //NSLog(@"ACTIVE: %c",self.game.gameActive);
     
-    int keypadHeight = 170;
+    UIView *patternView = [[UIView alloc] initWithFrame:self.keywordList.frame];
+    patternView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"clamshell.png"]];
+    patternView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.keywordList.backgroundView = patternView;
+
+    int keypadHeight = 100;
 
     // add player list
     keywordList = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-keypadHeight) style:UITableViewStylePlain];
@@ -105,9 +121,11 @@
     [keypad setAutoresizesSubviews:YES];
     [keypad setAutoresizingMask:(UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth)];
     
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"clamshell.png"]];
+
     [self.view addSubview:keywordList];
     [self.view addSubview:keypad];
-    
+    [keypad setMovieButtonTitle:currentMovie];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -117,14 +135,18 @@
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger rows = [[self.game gamePlayers] count];
-    NSLog(@"PLAYERS: %d",rows);
+    NSInteger rows = [currentKeywords count];
+    NSLog(@"KEYWORDS: %d",rows);
     return rows;
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+	NSString* CellIdentifier = [NSString stringWithFormat:@"Cell-%i", indexPath.row];
+    
+	KeywordCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil)
+		cell = [[KeywordCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
     // Customize keyword cell
     cell.textLabel.font = [UIFont fontWithName:@"Futura Md BT" size:16.0];
@@ -134,18 +156,12 @@
     cell.selectedBackgroundView = [[UIView alloc] initWithFrame:self.keywordList.frame];
     cell.selectedBackgroundView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
     
-    Keywords *kObj = [keywordArray objectAtIndex:indexPath.row];
+    Keywords *kObj = [currentKeywords objectAtIndex:indexPath.row];
     NSString* keywordString = [NSString stringWithFormat:@"%@", kObj.kTitle];
     keywordString = [keywordString stringByReplacingOccurrencesOfString:@"-" withString:@" "];
     keywordString = [keywordString uppercaseString];
     cell.textLabel.text = keywordString;
-    
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 60;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -167,24 +183,22 @@
 	// Do any additional setup after loading the view, typically from a nib.
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
-    NSMutableArray *tempMovieArray = [[NSMutableArray alloc] init];
-    self.movieArray = tempMovieArray;
-    NSMutableArray *tempKeywordArray = [[NSMutableArray alloc] init];
-    self.keywordArray = tempKeywordArray;
-    
     // get the last movie seen or a random movie
     if (![[NSUserDefaults standardUserDefaults] integerForKey:@"lastMovieID"]) {
         NSLog(@"LAST MOVIE STATUS: NO LASTMOVIEID, GET RANDOM");
-        [Movie getRandomMovie:[appDelegate getDBPath]];
-        Movie *mov = [movieArray objectAtIndex:0];
-        lastMovieID = mov.mID;
-        [Keywords getKeywordsForMovie:mov.mID dbPath:[appDelegate getDBPath]];
+        currentMovie = [Movie getRandomMovie:[appDelegate getDBPath]];
+        NSLog(@"MOVIE ID: %ld",(long)currentMovie.mID);
+        currentKeywords = [Keywords getKeywordsForMovie:currentMovie.mID dbPath:[appDelegate getDBPath]];
+        //lastMovieID = currentMovie.mID;
     } else {
         NSLog(@"LAST MOVIE STATUS: HAS A LASTMOVIEID OF %d",[[NSUserDefaults standardUserDefaults] integerForKey:@"lastMovieID"]);
-        [Movie getMovieFromID:[[NSUserDefaults standardUserDefaults] integerForKey:@"lastMovieID"] dbPath:[appDelegate getDBPath]];
-        Movie *mov = [movieArray objectAtIndex:0];
-        lastMovieID = mov.mID;
-        [Keywords getKeywordsForMovie:mov.mID dbPath:[appDelegate getDBPath]];
+        /*
+        currentMovie = [Movie getMovieFromID:[[NSUserDefaults standardUserDefaults] integerForKey:@"lastMovieID"] dbPath:[appDelegate getDBPath]];
+        lastMovieID = currentMovie.mID;
+        currentKeywords = [Keywords getKeywordsForMovie:currentMovie.mID dbPath:[appDelegate getDBPath]];
+        */
+        //currentMovie = [Movie getRandomMovie:[appDelegate getDBPath]];
+        //currentKeywords = [Keywords getKeywordsForMovie:currentMovie.mID dbPath:[appDelegate getDBPath]];
     }
 
     [self configureView];

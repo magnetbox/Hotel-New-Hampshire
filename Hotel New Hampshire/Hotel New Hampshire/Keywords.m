@@ -15,10 +15,10 @@ static sqlite3 *database = nil;
 
 @synthesize kID, kTitle;
 
-+ (Keywords*) getKeywordsForMovie:(NSInteger)pk dbPath:(NSString *)dbPath {
++ (NSMutableArray*) getKeywordsForMovie:(NSInteger)pk dbPath:(NSString *)dbPath {
     
     //NSLog(@"MOVIE PK: %d",pk);
-    Keywords *kObj = [[Keywords alloc] init];
+    NSMutableArray *keywordArray = [[NSMutableArray alloc] init];
     
     if (sqlite3_open([dbPath UTF8String], &database) == SQLITE_OK) {
         
@@ -26,7 +26,7 @@ static sqlite3 *database = nil;
         
         sqlite3_stmt *selectstmt;
         
-        if(sqlite3_prepare_v2(database, [sql UTF8String], -1, &selectstmt, NULL) == SQLITE_OK) {            
+        if(sqlite3_prepare_v2(database, [sql UTF8String], -1, &selectstmt, NULL) == SQLITE_OK) {
             
             while(sqlite3_step(selectstmt) == SQLITE_ROW) {
                 
@@ -40,13 +40,14 @@ static sqlite3 *database = nil;
                     [appDelegate.keywordArray addObject:kObj];
                 }
                  */
+                [keywordArray addObject:kObj];
             }
         }
         
     } else {
         sqlite3_close(database);
     }
-    return kObj;
+    return keywordArray;
 }
 
 + (void) finalizeStatements {

@@ -28,6 +28,7 @@
 		BB724DBB16AF9AAD00FD8327 /* grey.png in Resources */ = {isa = PBXBuildFile; fileRef = BB724DBA16AF9AAD00FD8327 /* grey.png */; };
 		BB82E5EC16A53B5800876CAC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB82E5EB16A53B5800876CAC /* StoreKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		BB83504E14AE8EF000E2210D /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB83504D14AE8EF000E2210D /* NewGameViewController.m */; };
+		BB8C87B116C7158D0064DBA9 /* clamshell.png in Resources */ = {isa = PBXBuildFile; fileRef = BB8C87B016C7158D0064DBA9 /* clamshell.png */; };
 		BB96465A16C6F25900EED0BD /* Keywords.m in Sources */ = {isa = PBXBuildFile; fileRef = BB96465616C6F25900EED0BD /* Keywords.m */; };
 		BB96465B16C6F25900EED0BD /* imdb.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = BB96465716C6F25900EED0BD /* imdb.sqlite */; };
 		BB96465C16C6F25900EED0BD /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = BB96465916C6F25900EED0BD /* Movie.m */; };
@@ -103,6 +104,7 @@
 		BB82E5EB16A53B5800876CAC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		BB83504C14AE8EF000E2210D /* NewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGameViewController.h; sourceTree = "<group>"; };
 		BB83504D14AE8EF000E2210D /* NewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGameViewController.m; sourceTree = "<group>"; };
+		BB8C87B016C7158D0064DBA9 /* clamshell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clamshell.png; sourceTree = "<group>"; };
 		BB96465516C6F25900EED0BD /* Keywords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Keywords.h; path = "../../Hotel New Hampshire/Hotel New Hampshire/Keywords.h"; sourceTree = "<group>"; };
 		BB96465616C6F25900EED0BD /* Keywords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Keywords.m; path = "../../Hotel New Hampshire/Hotel New Hampshire/Keywords.m"; sourceTree = "<group>"; };
 		BB96465716C6F25900EED0BD /* imdb.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = imdb.sqlite; path = "../../Hotel New Hampshire/imdb.sqlite"; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 		B5D4C7C514DF306100C2866B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BB8C87B016C7158D0064DBA9 /* clamshell.png */,
 				BB96465F16C6FBF100EED0BD /* Futura Bold BT.ttf */,
 				BB96466116C6FC1700EED0BD /* Default-Landscape@2x~ipad.png */,
 				BB96467F16C6FD4700EED0BD /* Default-Landscape@2x~ipad.png */,
@@ -400,6 +403,7 @@
 				BB96468816C6FD4700EED0BD /* Default-Portrait~ipad.png in Resources */,
 				BB96468916C6FD4700EED0BD /* Icon-72.png in Resources */,
 				BB96468A16C6FD4700EED0BD /* Icon-72@2x.png in Resources */,
+				BB8C87B116C7158D0064DBA9 /* clamshell.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

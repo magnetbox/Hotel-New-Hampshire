@@ -30,6 +30,8 @@
 
 @property (strong, nonatomic) id detailItem;
 @property (strong, nonatomic) Game *game;
+@property (strong, nonatomic) Movie *currentMovie;
+@property (strong, nonatomic) NSMutableArray *currentKeywords;
 
 @property (nonatomic, retain) UIView *keypad;
 @property (nonatomic, retain) UITableView *keywordList;
@@ -40,6 +42,8 @@
 @property (nonatomic, retain) NSString *lastKeywordSelected;
 @property (nonatomic, assign) NSInteger lastKeywordRowViewed;
 
-- (void)updatePlayerScore:(int)player;
+- (void) updatePlayerScore:(int)player;
+- (void) scrollToNextKeyword;
+- (void) reloadTableView:(NSInteger)pk;
 
 @end

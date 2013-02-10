@@ -33,12 +33,6 @@
     
     self.title = @"Hotel New Hampshire";
     [self.navigationController setNavigationBarHidden:TRUE animated:NO];
-    
-    // set background image to be static
-    UIView *patternView = [[UIView alloc] initWithFrame:self.tableView.frame];
-    patternView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"clamshell.png"]];
-    patternView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.tableView.backgroundView = patternView;
 
     // start keyword table from bottom of view
     [self.tableView setContentInset:UIEdgeInsetsMake(self.tableView.frame.size.height-142,0,100,0)];
@@ -61,7 +55,7 @@
     movieTitle.numberOfLines = 3;
     
     [movieButton addSubview:movieTitle];
-    [movieView addSubview:movieButton];    
+    [movieView addSubview:movieButton];
     [self.navigationController.view addSubview:movieView];    
     
 
