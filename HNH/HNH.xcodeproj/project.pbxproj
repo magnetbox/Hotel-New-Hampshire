@@ -45,12 +45,6 @@
 		BB96467A16C6FC1700EED0BD /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = BB96466B16C6FC1700EED0BD /* Icon-Small-50.png */; };
 		BB96467B16C6FC1700EED0BD /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB96466C16C6FC1700EED0BD /* Icon-Small-50@2x.png */; };
 		BB96467E16C6FC1700EED0BD /* leather.png in Resources */ = {isa = PBXBuildFile; fileRef = BB96466F16C6FC1700EED0BD /* leather.png */; };
-		BB96468516C6FD4700EED0BD /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = BB96467F16C6FD4700EED0BD /* Default-Landscape@2x~ipad.png */; };
-		BB96468616C6FD4700EED0BD /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = BB96468016C6FD4700EED0BD /* Default-Landscape~ipad.png */; };
-		BB96468716C6FD4700EED0BD /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = BB96468116C6FD4700EED0BD /* Default-Portrait@2x~ipad.png */; };
-		BB96468816C6FD4700EED0BD /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = BB96468216C6FD4700EED0BD /* Default-Portrait~ipad.png */; };
-		BB96468916C6FD4700EED0BD /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = BB96468316C6FD4700EED0BD /* Icon-72.png */; };
-		BB96468A16C6FD4700EED0BD /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB96468416C6FD4700EED0BD /* Icon-72@2x.png */; };
 		BB9C7A7016A3B80000712064 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9C7A6F16A3B80000712064 /* iAd.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		BB9DCEAC1485DD8700C0E306 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9DCEAB1485DD8700C0E306 /* Game.m */; };
 		BBB9974A16B4931200DC100E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BBB9974916B4931200DC100E /* Default.png */; };
@@ -397,12 +391,6 @@
 				BB96467A16C6FC1700EED0BD /* Icon-Small-50.png in Resources */,
 				BB96467B16C6FC1700EED0BD /* Icon-Small-50@2x.png in Resources */,
 				BB96467E16C6FC1700EED0BD /* leather.png in Resources */,
-				BB96468516C6FD4700EED0BD /* Default-Landscape@2x~ipad.png in Resources */,
-				BB96468616C6FD4700EED0BD /* Default-Landscape~ipad.png in Resources */,
-				BB96468716C6FD4700EED0BD /* Default-Portrait@2x~ipad.png in Resources */,
-				BB96468816C6FD4700EED0BD /* Default-Portrait~ipad.png in Resources */,
-				BB96468916C6FD4700EED0BD /* Icon-72.png in Resources */,
-				BB96468A16C6FD4700EED0BD /* Icon-72@2x.png in Resources */,
 				BB8C87B116C7158D0064DBA9 /* clamshell.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

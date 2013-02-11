@@ -14,7 +14,8 @@
 @synthesize gameTitle;
 @synthesize gamePlayers;
 @synthesize gamePlayersScore;
-@synthesize gamePlayersTurn;
+@synthesize gameMoviesDone;
+@synthesize gameLastKeywordRowViewed;
 @synthesize gameActive;
 
 #pragma mark NSCoding
@@ -24,18 +25,20 @@
     [aCoder encodeObject:self.gameTitle forKey:@"GameTitle"];
     [aCoder encodeObject:self.gamePlayers forKey:@"GamePlayers"];
     [aCoder encodeObject:self.gamePlayersScore forKey:@"GamePlayersScore"];
-    [aCoder encodeInt:self.gamePlayersTurn forKey:@"GamePlayersTurn"];
+    [aCoder encodeObject:self.gameMoviesDone forKey:@"GameMoviesDone"];
+    [aCoder encodeInt:self.gameLastKeywordRowViewed forKey:@"GameLastKeywordRowViewed"];
     [aCoder encodeBool:self.gameActive forKey:@"GameActive"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super init]) {
-        self.gameId             = [aDecoder decodeIntForKey:@"GameId"];
-        self.gameTitle          = [aDecoder decodeObjectForKey:@"GameTitle"];
-        self.gamePlayers        = [aDecoder decodeObjectForKey:@"GamePlayers"];
-        self.gamePlayersScore   = [aDecoder decodeObjectForKey:@"GamePlayersScore"];
-        self.gamePlayersTurn    = [aDecoder decodeIntForKey:@"GamePlayersTurn"];
-        self.gameActive         = [aDecoder decodeBoolForKey:@"GameActive"];
+        self.gameId = [aDecoder decodeIntForKey:@"GameId"];
+        self.gameTitle = [aDecoder decodeObjectForKey:@"GameTitle"];
+        self.gamePlayers = [aDecoder decodeObjectForKey:@"GamePlayers"];
+        self.gamePlayersScore = [aDecoder decodeObjectForKey:@"GamePlayersScore"];
+        self.gameMoviesDone = [aDecoder decodeObjectForKey:@"GameMoviesDone"];
+        self.gameLastKeywordRowViewed = [aDecoder decodeIntForKey:@"GameLastKeywordRowViewed"];
+        self.gameActive = [aDecoder decodeBoolForKey:@"GameActive"];
     }
     return self;
 }

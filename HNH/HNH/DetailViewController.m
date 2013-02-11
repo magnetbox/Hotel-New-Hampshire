@@ -20,50 +20,37 @@
 @implementation DetailViewController
 
 @synthesize detailItem = _detailItem;
-@synthesize game, keypad, keywordList;
 @synthesize currentMovie, currentKeywords;
-@synthesize movieArray, keywordArray, lastMovieID, lastKeywordSelected, lastKeywordRowViewed;
+@synthesize game, keypad, keywordList;
 
 #pragma mark - Managing the detail item
-
-- (void)buttonPressed:(id)sender {
-    NSLog(@"DIGIT PRESSED: %d", [sender tag]);
-    //NSInteger total = [keypad.display.text intValue];
-    //keypad.display.text = [NSString stringWithFormat:@"%d", total+[sender tag]];
-}
-
-- (void)clearDisplay {
-    NSLog(@"CLEAR");
-    //keypad.display.text = @"0";
-}
 
 - (void)scrollToNextKeyword {
     NSLog(@"NEXT WORD");
     //NSLog(@"%d of %d",appDelegate.lastKeywordRowViewed,[appDelegate.keywordArray count]);
     //randomView.hidden = YES; // make random message alert go away
     
-    if (lastKeywordRowViewed < [self.currentKeywords count]-1) {
-        lastKeywordRowViewed = lastKeywordRowViewed+1;
-        [self.keywordList scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:lastKeywordRowViewed inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    if (game.gameLastKeywordRowViewed < [self.currentKeywords count]-1) {
+        game.gameLastKeywordRowViewed = game.gameLastKeywordRowViewed+1;
+        [self.keywordList scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:game.gameLastKeywordRowViewed inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
 }
 
 - (void)endTurn:(id)sender {
     NSLog(@"END TURN");
     
-    // update score display
-    [self updatePlayerScore:[self.game gamePlayersTurn]];
+    // pick which player got it
 
-    // select next player
-    [self.game setGamePlayersTurn:[self.game gamePlayersTurn] + 1];
-    if ([self.game gamePlayersTurn]>([[self.game gamePlayers] count]-1)) {
-        [self.game setGamePlayersTurn:0];
-    }
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.game gamePlayersTurn] inSection:0];
-    [keywordList selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
-
-    [self clearDisplay];
+    // save game
     [self saveGames];
+}
+
+- (void) updatePlayerScore:(int)player {
+    
+}
+
+- (void)reloadTableView:(NSInteger)pk {
+
 }
 
 - (void)saveGames {
@@ -105,7 +92,7 @@
     patternView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.keywordList.backgroundView = patternView;
 
-    int keypadHeight = 100;
+    int keypadHeight = 88;
 
     // add player list
     keywordList = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-keypadHeight) style:UITableViewStylePlain];
@@ -115,6 +102,7 @@
     [keywordList setAutoresizingMask:(UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
     [keywordList setDelegate:self];
     [keywordList setDataSource:self];
+    [keywordList setContentInset:UIEdgeInsetsMake(keywordList.frame.size.height-keypadHeight,0,0,0)];
     
     // add keypad
     keypad = [[KeypadView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-keypadHeight, self.view.frame.size.width, keypadHeight)];
@@ -122,7 +110,6 @@
     [keypad setAutoresizingMask:(UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth)];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"clamshell.png"]];
-
     [self.view addSubview:keywordList];
     [self.view addSubview:keypad];
     [keypad setMovieButtonTitle:currentMovie];
@@ -166,7 +153,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
-    self.game.gamePlayersTurn = indexPath.row;
+    Keywords *kObj = [currentKeywords objectAtIndex:indexPath.row];
+    [self endTurn:kObj];
 }
 
 - (void)didReceiveMemoryWarning
@@ -181,6 +169,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
     // get the last movie seen or a random movie

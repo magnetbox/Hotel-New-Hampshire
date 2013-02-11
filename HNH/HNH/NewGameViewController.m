@@ -39,7 +39,7 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
 
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.tintColor = [UIColor brownColor];
 
     NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
     NSData *defaultGameArraySavedArray = [currentDefaults objectForKey:@"defaultGame"];
@@ -80,7 +80,7 @@
     settingsList.backgroundView = nil;
     [self.view addSubview:settingsList];
 
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"grey.png"]]];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"clamshell.png"]]];
     
     // add banner ad
     if (![self didRemoveAds]) {
@@ -582,7 +582,7 @@
     game.gameActive = YES;
     game.gamePlayers = defaultGamePlayers;
     game.gameTitle = [defaultGameSettings objectAtIndex:2];
-    game.gamePlayersTurn = defaultGamePlayersTurn;
+    game.gameMoviesDone = [[NSMutableArray alloc] init];
     game.gamePlayersScore = [[NSMutableArray alloc] init];
     int i;
     for (i=0; i<[game.gamePlayers count]; i++) {

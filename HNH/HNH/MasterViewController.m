@@ -35,7 +35,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.tintColor = [UIColor brownColor];
     
     /*
     appDelegate.activeGames = [NSMutableArray arrayWithCapacity:10];
@@ -105,7 +105,7 @@
     gameList.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     gameList.backgroundView = nil;
  
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"grey.png"]]];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"clamshell.png"]]];
     [self.view addSubview:gameList];
     
     // add banner ad

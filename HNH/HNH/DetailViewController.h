@@ -22,25 +22,14 @@
     AppDelegate *appDelegate;
     KeypadView *keypad;
     UITableView *keywordList;
-    NSMutableArray *movieArray;
-    NSMutableArray *keywordArray;
-    NSString *lastKeywordSelected;
-    NSInteger lastMovieID;
 }
 
 @property (strong, nonatomic) id detailItem;
 @property (strong, nonatomic) Game *game;
 @property (strong, nonatomic) Movie *currentMovie;
 @property (strong, nonatomic) NSMutableArray *currentKeywords;
-
 @property (nonatomic, retain) UIView *keypad;
 @property (nonatomic, retain) UITableView *keywordList;
-
-@property (nonatomic, retain) NSMutableArray *movieArray;
-@property (nonatomic, retain) NSMutableArray *keywordArray;
-@property (nonatomic, assign) NSInteger lastMovieID;
-@property (nonatomic, retain) NSString *lastKeywordSelected;
-@property (nonatomic, assign) NSInteger lastKeywordRowViewed;
 
 - (void) updatePlayerScore:(int)player;
 - (void) scrollToNextKeyword;

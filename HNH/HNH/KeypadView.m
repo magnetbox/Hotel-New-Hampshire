@@ -64,7 +64,9 @@
         /* This step is important: We make a constraint box
          using only the fixed WIDTH of the UILabel. The height will
          be checked later. */
-        CGSize constraintSize = CGSizeMake(260.0f, MAXFLOAT);
+        NSLog(@"%f",self.frame.size.width);
+        NSLog(@"%f",self.frame.size.height);
+        CGSize constraintSize = CGSizeMake(self.frame.size.width-20.0f, MAXFLOAT);
         
         // This step checks how tall the label would be with the desired font.
         CGSize labelSize = [movieString sizeWithFont:font constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
@@ -73,7 +75,7 @@
          Set the value in the if statement to the height of your UILabel
          If the label fits into your required height, it will break the loop
          and use that font size. */
-        if(labelSize.height <= 80.0f)
+        if(labelSize.height <= self.frame.size.height-10.0f)
             break;
     }
     // You can see what size the function is using by outputting: NSLog(@"Best size is: %u", i);
