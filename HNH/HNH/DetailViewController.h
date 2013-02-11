@@ -22,6 +22,8 @@
     AppDelegate *appDelegate;
     KeypadView *keypad;
     UITableView *keywordList;
+    UIView *randomView;
+    UILabel *randomText;
 }
 
 @property (strong, nonatomic) id detailItem;
@@ -30,6 +32,8 @@
 @property (strong, nonatomic) NSMutableArray *currentKeywords;
 @property (nonatomic, retain) UIView *keypad;
 @property (nonatomic, retain) UITableView *keywordList;
+@property (nonatomic, retain) UIView *randomView;
+@property (nonatomic, retain) UILabel *randomText;
 
 - (void) updatePlayerScore:(int)player;
 - (void) scrollToNextKeyword;

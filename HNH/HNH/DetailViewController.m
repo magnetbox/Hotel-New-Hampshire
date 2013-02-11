@@ -20,15 +20,13 @@
 @implementation DetailViewController
 
 @synthesize detailItem = _detailItem;
+@synthesize game, keypad, keywordList, randomView, randomText;
 @synthesize currentMovie, currentKeywords;
-@synthesize game, keypad, keywordList;
 
 #pragma mark - Managing the detail item
 
 - (void)scrollToNextKeyword {
-    NSLog(@"NEXT WORD");
-    //NSLog(@"%d of %d",appDelegate.lastKeywordRowViewed,[appDelegate.keywordArray count]);
-    //randomView.hidden = YES; // make random message alert go away
+    randomView.hidden = YES; // make random message alert go away
     
     if (game.gameLastKeywordRowViewed < [self.currentKeywords count]-1) {
         game.gameLastKeywordRowViewed = game.gameLastKeywordRowViewed+1;
@@ -36,10 +34,13 @@
     }
 }
 
-- (void)endTurn:(id)sender {
+- (void)endTurn:(int)row {
     NSLog(@"END TURN");
     
     // pick which player got it
+    
+    // mark movie as have been done
+    [game.gameMoviesDone addObject:currentMovie];
 
     // save game
     [self saveGames];
@@ -112,6 +113,24 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"clamshell.png"]];
     [self.view addSubview:keywordList];
     [self.view addSubview:keypad];
+
+    // load hidden random message alert box
+    randomView = [[UIView alloc] initWithFrame:CGRectMake(10,-180,self.keywordList.frame.size.width-20,100)];
+    randomView.hidden = YES;
+    randomView.backgroundColor = [UIColor clearColor];
+    
+    randomText = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, randomView.frame.size.width-20.0, randomView.frame.size.height-20.0)];
+    randomText.backgroundColor = [UIColor clearColor];
+    randomText.font = [UIFont fontWithName:@"Futura Md BT" size:15.0];
+    randomText.textColor = [UIColor colorWithRed:91.0f/255.0f green:130.0f/255.0f blue:135.0f/255.0f alpha:1.0f];
+    randomText.shadowColor = [UIColor colorWithRed:178.0f/255.0f green:208.0f/255.0f blue:212.0f/255.0f alpha:1.0f];
+    randomText.shadowOffset = CGSizeMake(1,1);
+    randomText.textAlignment = UITextAlignmentCenter;
+    randomText.numberOfLines = 0;
+    randomText.text = @"NEW RANDOM MOVIE!";
+    [randomView addSubview:randomText];
+    [keywordList addSubview:randomView];
+    
     [keypad setMovieButtonTitle:currentMovie];
 }
 
@@ -153,8 +172,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
-    Keywords *kObj = [currentKeywords objectAtIndex:indexPath.row];
-    [self endTurn:kObj];
+    [self endTurn:indexPath.row];
 }
 
 - (void)didReceiveMemoryWarning
